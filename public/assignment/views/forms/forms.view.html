@@ -1,8 +1,12 @@
 
           <h1 class="page-header">Admin</h1>
 
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#/forms">Forms</a></li>
+            <li><a href="form-fields.html">Fields</a></li>
+          </ul>
 
-          <table class="table table-reflow" ng-controller="FormController">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th><span class="glyphicon glyphicon-sort"></span> Form Name</th>
@@ -12,10 +16,10 @@
 
             <tbody>
               <tr>
-                <th><input type='text' placeholder="Name" ng-model="form.name"/></th>
+                <th><input type='text' placeholder="Name" ng-model="form.title"/></th>
                 <td>
-                  <span style="font-size: 2em;" class="glyphicon glyphicon-plus" ng-click="addForm()"></span>
-                  <span style="font-size: 2em;" class="glyphicon glyphicon-ok"></span>
+                  <a><span style="font-size: 2em;" class="glyphicon glyphicon-plus" ng-click="addForm()"></span></a>
+                  <a><span style="font-size: 2em;" class="glyphicon glyphicon-ok" ng-click="updateForm()"></span></a>
                 </td>
               </tr>
 
@@ -25,8 +29,9 @@
                   <span style="font-size: 2em;" class="glyphicon glyphicon-remove" ng-click="deleteForm($index)"></span>
                   <span style="font-size: 2em;" class="glyphicon glyphicon-ok" ng-click="selectForm($index)"></span>
                 </td>
-
+              </tr>
             </tbody>
+
           </table>
 
 

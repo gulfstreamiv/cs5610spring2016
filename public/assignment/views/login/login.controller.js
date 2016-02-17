@@ -8,7 +8,7 @@
             UserService.findUserByUsernameAndPassword($scope.username, $scope.password, function(retVal){
                 $rootscope.user = retVal;
                 $location.path('profile');
-            })
+            });
         }
     }
 })();

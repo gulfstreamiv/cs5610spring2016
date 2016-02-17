@@ -19,5 +19,5 @@
             $rootScope.admin = null;
             $location.path('home');
         }
-    };
+    }
 })();
