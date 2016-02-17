@@ -13,9 +13,10 @@
         function update() {
             console.log("you clicked update button!!!");
 
-            UserService.updateUser($scope.id, $scope.user, function(updatedUser){
+            UserService.updateUser($scope.user._id, $scope.user, function(updatedUser){
                 //Do nothing
                 console.log(JSON.stringify($scope.user));
+                $location.path("home")
             });
         }
 

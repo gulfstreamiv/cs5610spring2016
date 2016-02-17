@@ -4,9 +4,11 @@
 
     function implementation($rootScope, $scope, $location, UserService){
         $scope.$location = $location;
+        $scope.login = login;
+
         function login(){
             UserService.findUserByUsernameAndPassword($scope.username, $scope.password, function(retVal){
-                $rootscope.user = retVal;
+                $rootScope.user = retVal;
                 $location.path('profile');
             });
         }
