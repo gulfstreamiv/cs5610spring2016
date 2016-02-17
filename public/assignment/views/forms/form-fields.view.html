@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+      .inline{
+        display:inline-block;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <p style="color:white"><font size="6">Form Maker</font></p>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Username</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="admin.html">Admin</a></li>
+            <li class="active"><a href="forms.html">Forms</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Forms: Registration Form</h1>
+
+          <ul class="nav nav-tabs">
+            <li><a href="forms.html">Forms</a></li>
+            <li><a href="form-fields.html">Fields</a></li>
+          </ul>
+          <br>
+          
+          <form role="form">
+
+            <div class="form-group">
+              <label for="firstname">First Name:</label><br>
+              <input type="text" name="firstname" size="35" placeholder="First Name">
+              <span style="font-size: 2em; margin-left: 150px;" class="glyphicon glyphicon-pencil"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-remove"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-menu-hamburger"></span>  
+            </div>
+            <div class="form-group">
+              <label for="firstname">Last Name:</label><br>
+              <input type="text" name="lastname" size="35" placeholder="Last Name">
+              <span style="font-size: 2em;margin-left: 150px;" class="glyphicon glyphicon-pencil"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-remove"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-menu-hamburger"></span>  
+            </div>
+            <div class="form-group">
+              <label for="dob">Date of birth:</label><br>
+              <input type="date" name="bday" style="width: 265px;">
+              <span style="font-size: 2em;margin-left: 150px;" class="glyphicon glyphicon-pencil"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-remove"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-menu-hamburger"></span>  
+            </div>
+            <div class="form-group">
+              <label for="dob">Gender:</label><br>
+              <select name="gender" style="width: 265px;">
+                <option value="volvo">Male</option>
+                <option value="saab">Female</option>
+              </select>
+              <span style="font-size: 2em;margin-left: 150px;" class="glyphicon glyphicon-pencil"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-remove"></span>
+              <span style="font-size: 2em;" class="glyphicon glyphicon-menu-hamburger"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="dob">Roles:</label><br>
+              <div style="float: left;">
+                <form action="">
+                <input type="checkbox" name="admin" value="Bike">Admin<br>
+                <input type="checkbox" name="student" value="Car">Student<br>
+                <input type="checkbox" name="user" value="Car">User<br>
+                </form>
+              </div>
+              
+              <div style="margin-left: 418px;">
+                <span style="font-size: 2em;" class="glyphicon glyphicon-pencil"></span>
+                <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
+                <span style="font-size: 2em;" class="glyphicon glyphicon-remove"></span>
+                <span style="font-size: 2em;" class="glyphicon glyphicon-menu-hamburger"></span>
+              </div>
+            
+            </div>
+            <br>
+
+            <div class="form-group">
+              <label for="dob">License Agreement:</label><br>
+              <div style="float: left;">
+                <form action="">
+                  <input type="radio" name="license" value="yes"> Yes<br>
+                  <input type="radio" name="license" value="no"> No<br>
+                </form>
+              </div>
+              
+              <div style="margin-left: 418px;">
+                <span style="font-size: 2em;" class="glyphicon glyphicon-pencil"></span>
+                <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
+                <span style="font-size: 2em;" class="glyphicon glyphicon-remove"></span>
+                <span style="font-size: 2em;" class="glyphicon glyphicon-menu-hamburger"></span>
+              </div>
+            
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+              <label for="dob">Add New Field:</label><br>
+              <div style="float: left;">
+                <select name="newfield" style="width: 265px;">
+                  <option value="singlelinetext">Single Line Text</option>
+                  <option value="date">Date</option>
+                  <option value="dropdown">Dropdown</option>
+                  <option value="checkbox">Checkboxes</option>
+                  <option value="radio">Radio Buttons</option>
+                  <option value="paragraph">Paragraph Text Field</option>
+                </select>
+              </div>
+              
+              <div style="margin-left: 418px;">
+                <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
+              </div>
+            
+            </div>
+            
+          </form>
+
+  
+      </div>
+    </div>
+  </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

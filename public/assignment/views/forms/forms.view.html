@@ -1,0 +1,32 @@
+
+          <h1 class="page-header">Admin</h1>
+
+
+          <table class="table table-reflow" ng-controller="FormController">
+            <thead>
+              <tr>
+                <th><span class="glyphicon glyphicon-sort"></span> Form Name</th>
+                <th><span class="glyphicon glyphicon-sort"></span> Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th><input type='text' placeholder="Name" ng-model="form.name"/></th>
+                <td>
+                  <span style="font-size: 2em;" class="glyphicon glyphicon-plus" ng-click="addForm()"></span>
+                  <span style="font-size: 2em;" class="glyphicon glyphicon-ok"></span>
+                </td>
+              </tr>
+
+              <tr ng-repeat="form in forms">
+                <td>
+                  <span>{{form.title}}</span>
+                  <span style="font-size: 2em;" class="glyphicon glyphicon-remove" ng-click="deleteForm($index)"></span>
+                  <span style="font-size: 2em;" class="glyphicon glyphicon-ok" ng-click="selectForm($index)"></span>
+                </td>
+
+            </tbody>
+          </table>
+
+
