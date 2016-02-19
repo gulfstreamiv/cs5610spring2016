@@ -3,10 +3,11 @@
     angular.module("FormBuilderApp").controller("FormController", FormController);
 
     function FormController($rootScope, $scope, $location, FormService){
-        $scope.$location = $location;
 
         var currentUser = $rootScope.user;
         $scope.updatedForm = {};
+        $scope.form = {};
+        $scope.form.title = "";
 
         if(!currentUser) alert("Can't retrieve forms. You are not logged in yet.");
         else getForms();
@@ -23,20 +24,21 @@
 
         $scope.updateForm = function(){
             if($scope.selectedForm)
+                $scope.updatedForm.title = $scope.form.title;
                 FormService.updateFormById($scope.selectedForm._id, $scope.updatedForm, function(retVal){
-
+                    getForms();
                 });
         };
 
         $scope.deleteForm = function(index){
             FormService.deleteFormById($scope.forms[index]._id, function(retVal){
                 getForms();
-            })
+            });
         };
 
         $scope.selectForm = function(index){
             $scope.selectedForm = $scope.forms[index];
-            $scope.updatedForm.title = $scope.selectedForm.title;
+            $scope.form.title = $scope.selectedForm.title;
         };
 
         function getForms(){

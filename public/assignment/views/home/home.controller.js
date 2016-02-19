@@ -3,8 +3,6 @@
     angular.module("FormBuilderApp").controller("HomeController", HomeController);
 
     function HomeController($rootScope, $scope, $location){
-        $scope.$location = $location;
-
         $scope.ifLoggedIn = function(){
             return $rootScope.user;
         };

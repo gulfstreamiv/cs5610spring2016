@@ -1,37 +1,37 @@
 
-          <h1 class="page-header">Admin</h1>
+    <h1 class="page-header">Admin</h1>
 
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#/forms">Forms</a></li>
-            <li><a href="form-fields.html">Fields</a></li>
-          </ul>
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#/forms">Forms</a></li>
+      <li><a href="form-fields.html">Fields</a></li>
+    </ul>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th><span class="glyphicon glyphicon-sort"></span> Form Name</th>
-                <th><span class="glyphicon glyphicon-sort"></span> Action</th>
-              </tr>
-            </thead>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><span class="glyphicon glyphicon-sort"></span> Form Name</th>
+          <th><span class="glyphicon glyphicon-sort"></span> Action</th>
+        </tr>
+      </thead>
 
-            <tbody>
-              <tr>
-                <th><input type='text' placeholder="Name" ng-model="form.title"/></th>
-                <td>
-                  <a><span style="font-size: 2em;" class="glyphicon glyphicon-plus" ng-click="addForm()"></span></a>
-                  <a><span style="font-size: 2em;" class="glyphicon glyphicon-ok" ng-click="updateForm()"></span></a>
-                </td>
-              </tr>
+      <tbody>
+        <tr>
+          <td><input type='text' placeholder="Title" ng-model="form.title"/></td>
+          <td>
+            <a><span style="font-size: 2em;" class="glyphicon glyphicon-plus" ng-click="addForm()"></span></a>
+            <a><span style="font-size: 2em;" class="glyphicon glyphicon-ok" ng-click="updateForm()"></span></a>
+          </td>
+        </tr>
 
-              <tr ng-repeat="form in forms">
-                <td>
-                  <span>{{form.title}}</span>
-                  <a><span style="font-size: 2em;" class="glyphicon glyphicon-remove" ng-click="deleteForm($index)"></span></a>
-                  <a><span style="font-size: 2em;" class="glyphicon glyphicon-pencil" ng-click="selectForm($index)"></span></a>
-                </td>
-              </tr>
-            </tbody>
+        <tr ng-repeat="form in forms">
+          <th><span>{{form.title}}</span></th>
+          <td>
+            <a><span style="font-size: 2em;" class="glyphicon glyphicon-remove" ng-click="deleteForm($index)"></span></a>
+            <a><span style="font-size: 2em;" class="glyphicon glyphicon-pencil" ng-click="selectForm($index)"></span></a>
+          </td>
+        </tr>
+      </tbody>
 
-          </table>
+    </table>
 
 
