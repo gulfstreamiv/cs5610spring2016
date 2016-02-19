@@ -1,8 +1,8 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("LoginController", implementation);
+    angular.module("FormBuilderApp").controller("LoginController", LoginController);
 
-    function implementation($rootScope, $scope, $location, UserService){
+    function LoginController($rootScope, $scope, $location, UserService){
         $scope.$location = $location;
         $scope.login = login;
 

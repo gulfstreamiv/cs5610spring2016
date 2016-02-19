@@ -6,15 +6,15 @@
 
     function HeaderController($rootScope, $location){
 
-        function currentUser(){
+        this.currentUser = function(){
             return $rootScope.user;
-        }
+        };
 
-        function currentAdmin(){
+        this.currentAdmin = function(){
             return $rootScope.admin;
-        }
+        };
 
-        function logout(){
+        this.logout = function(){
             $rootScope.user = null;
             $rootScope.admin = null;
             $location.path('home');

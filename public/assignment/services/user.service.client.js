@@ -5,21 +5,24 @@
         function  UserService () {
 
             var userArray = [
-                {"_id": 123, "firstName": "Alice", "lastName": "Wonderland", "username": "alice", "password": "alice"},
-                {"_id": 234, "firstName": "Bob", "lastName": "Hope", "username": "bob", "password": "bob"},
-                {"_id": 345, "firstName": "Charlie", "lastName": "Brown", "username": "charlie", "password": "charlie"},
-                {"_id": 456, "firstName": "Dan", "lastName": "Craig", "username": "dan", "password": "dan"},
-                {"_id": 567, "firstName": "Edward", "lastName": "Norton", "username": "ed", "password": "ed"}
+                {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
+                    "username":"alice",  "password":"alice",   "roles": ["student"]		},
+                {	"_id":234, "firstName":"Bob",              "lastName":"Hope",
+                    "username":"bob",    "password":"bob",     "roles": ["admin"]		},
+                {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
+                    "username":"charlie","password":"charlie", "roles": ["faculty"]		},
+                {	"_id":456, "firstName":"Dan",              "lastName":"Craig",
+                    "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"]},
+                {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
+                    "username":"ed",     "password":"ed",      "roles": ["student"]		}
             ];
-
-            var adminArray = [];
 
             var serviceType = {
                 findUserByUsernameAndPassword: findByNamePassword,
                 findAllUsers: findAll,
                 createUser: create,
                 deleteUserById: deleteById,
-                updateUser: updateUser,
+                updateUser: updateUser
             };
 
             return serviceType;

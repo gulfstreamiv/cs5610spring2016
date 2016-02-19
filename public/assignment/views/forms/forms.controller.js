@@ -4,48 +4,46 @@
 
     function FormController($rootScope, $scope, $location, FormService){
         $scope.$location = $location;
-        $scope.addForm = addForm;
-        $scope.updateForm = updateForm;
-        $scope.deleteForm = deleteForm;
-        $scope.selectForm = selectForm;
 
         var currentUser = $rootScope.user;
+        $scope.updatedForm = {};
 
         if(!currentUser) alert("Can't retrieve forms. You are not logged in yet.");
-        else $scope.forms = getForms();
+        else getForms();
 
 
-        function addForm(){
+        $scope.addForm = function(){
             var newForm = {
-                title : $scope.form.name
+                title : $scope.form.title
             };
             FormService.createFormForUser(currentUser._id, newForm, function(retVal){
                 $scope.forms.push(retVal);
             });
-        }
+        };
 
-        function updateForm(){
+        $scope.updateForm = function(){
             if($scope.selectedForm)
-                FormService.updateFormById($scope.selectedForm._id, $scope.form, function(retVal){
+                FormService.updateFormById($scope.selectedForm._id, $scope.updatedForm, function(retVal){
 
                 });
-        }
+        };
 
-        function deleteForm(index){
-            FormService.deleteFormById(index, function(retVal){
-
+        $scope.deleteForm = function(index){
+            FormService.deleteFormById($scope.forms[index]._id, function(retVal){
+                getForms();
             })
-        }
+        };
 
-        function selectForm(index){
-            $scope.selectedForm = forms[index];
-            $scope.form.title = $scope.selectedForm.title;
-        }
+        $scope.selectForm = function(index){
+            $scope.selectedForm = $scope.forms[index];
+            $scope.updatedForm.title = $scope.selectedForm.title;
+        };
 
         function getForms(){
-            FormService.findAllFormsForUser(123, function(forms){
-                $scope.forms = forms;
+            FormService.findAllFormsForUser(currentUser._id, function(retVal){
+                $scope.forms = retVal;
             });
         }
+
     }
 }) ();

@@ -26,8 +26,8 @@
               <tr ng-repeat="form in forms">
                 <td>
                   <span>{{form.title}}</span>
-                  <span style="font-size: 2em;" class="glyphicon glyphicon-remove" ng-click="deleteForm($index)"></span>
-                  <span style="font-size: 2em;" class="glyphicon glyphicon-ok" ng-click="selectForm($index)"></span>
+                  <a><span style="font-size: 2em;" class="glyphicon glyphicon-remove" ng-click="deleteForm($index)"></span></a>
+                  <a><span style="font-size: 2em;" class="glyphicon glyphicon-pencil" ng-click="selectForm($index)"></span></a>
                 </td>
               </tr>
             </tbody>
