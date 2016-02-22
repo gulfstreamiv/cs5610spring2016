@@ -4,18 +4,18 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($rootScope, $location){
+    function HeaderController($rootScope, $scope, $location){
 
-        this.currentUser = function(){
+        $scope.currentUser = function(){
             return $rootScope.user;
         };
 
-        this.currentAdmin = function(){
+        $scope.currentAdmin = function(){
             if(!$rootScope.user) return false;
             return $rootScope.user.roles.indexOf("admin") != -1;
         };
 
-        this.logout = function(){
+        $scope.logout = function(){
             $rootScope.user = null;
             $rootScope.admin = null;
             $location.path('home');

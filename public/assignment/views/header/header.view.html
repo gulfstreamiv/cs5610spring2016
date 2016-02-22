@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController as headCtrl">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -11,11 +11,11 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li ng-show="!headCtrl.currentUser()"><a href="#/register">Register</a></li>
-        <li ng-show="!headCtrl.currentUser()"><a href="#/login">Login</a></li>
-        <li ng-show="headCtrl.currentUser()" ng-click="headCtrl.logout()"><a href="#/home">Logout</a></li>
-        <li ng-show="headCtrl.currentUser()"><a href="#/profile">Username</a></li>
-        <li ng-show="headCtrl.currentAdmin()"><a href="#/admin">Admin</a></li>
+        <li ng-show="!currentUser()"><a href="#/register">Register</a></li>
+        <li ng-show="!currentUser()"><a href="#/login">Login</a></li>
+        <li ng-show="currentUser()" ng-click="logout()"><a href="#/home">Logout</a></li>
+        <li ng-show="currentUser()"><a href="#/profile">Username</a></li>
+        <li ng-show="currentAdmin()"><a href="#/admin">Admin</a></li>
       </ul>
     </div>
   </div>
