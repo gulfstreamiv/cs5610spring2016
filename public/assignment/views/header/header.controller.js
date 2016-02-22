@@ -11,7 +11,8 @@
         };
 
         this.currentAdmin = function(){
-            return $rootScope.admin;
+            if(!$rootScope.user) return false;
+            return $rootScope.user.roles.indexOf("admin") != -1;
         };
 
         this.logout = function(){

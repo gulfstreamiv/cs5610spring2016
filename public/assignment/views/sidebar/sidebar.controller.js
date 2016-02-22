@@ -2,8 +2,16 @@
     "use strict";
     angular.module("FormBuilderApp").controller("SidebarController", SidebarController);
 
-    function SidebarController($scope, $location){
+    function SidebarController($rootScope, $scope, $location){
 
+        $scope.currentUser = function(){
+            return $rootScope.user;
+        };
+
+        $scope.currentAdmin = function(){
+            if(!$rootScope.user) return false;
+            return $rootScope.user.roles.indexOf("admin") != -1;
+        };
     }
 
 

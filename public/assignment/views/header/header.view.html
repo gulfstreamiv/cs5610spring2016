@@ -13,10 +13,9 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-show="!headCtrl.currentUser()"><a href="#/register">Register</a></li>
         <li ng-show="!headCtrl.currentUser()"><a href="#/login">Login</a></li>
-        <li ng-show="headCtrl.currentUser()"><a href="#/home">Username</a></li>
         <li ng-show="headCtrl.currentUser()" ng-click="headCtrl.logout()"><a href="#/home">Logout</a></li>
-        <li ng-show="headCtrl.currentUser()"><a href="#/profile">Profile</a></li>
-        <li ng-show="!headCtrl.currentAdmin()"><a href="#/admin">Admin</a></li>
+        <li ng-show="headCtrl.currentUser()"><a href="#/profile">Username</a></li>
+        <li ng-show="headCtrl.currentAdmin()"><a href="#/admin">Admin</a></li>
       </ul>
     </div>
   </div>
