@@ -1,0 +1,55 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Confirm Booking</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p>Please review your order summary below and then click <b>Confirm</b>. When you are finished, you will be
+                        automatically returned to your personal homepage.
+                    </p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+
+                                    <tbody>
+                                    <tr>
+                                        <th>Time</th>
+                                        <td colspan="4">{{time}}:00</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Location</th>
+                                        <td colspan="4">{{location}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Tutor Name</th>
+                                        <td colspan="4">{{tutorFirstName}} {{tutorLastName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tutorial Subject</th>
+                                        <td colspan="4">{{field}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Order Subtotal</th>
+                                        <td colspan="4">${{price}}.00</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button ng-click="confirm()" type="button" class="btn btn-outline btn-success" style="float: right;">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Tutor Selection</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <b>Available Tutors</b>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Field of Expertise</th>
+                                    <th>Location</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr ng-repeat="tutor in availableTutors">
+                                    <td>{{tutor.firstName}} {{tutor.lastName}}</td>
+                                    <td>{{tutor.field}}</td>
+                                    <td>{{tutor.location}}</td>
+                                    <td>${{tutor.price}} / Hour</td>
+                                    <td><a ng-href="#/confirm/{{uid}}/{{tutor._id}}/{{field}}/{{time}}/{{location}}/{{duration}}">Book Session</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

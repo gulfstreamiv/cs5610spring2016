@@ -1,0 +1,87 @@
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+
+    </div>
+    <h1 class="page-header">Profile</h1>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">User Profile</h3>
+      </div>
+      <div class="panel-body">
+
+          <form class="form-horizontal">
+
+            <div class="form-group">
+              <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+              <div class="col-sm-10">
+                <input type="username" class="form-control" id="inputUsername" placeholder="Username" ng-model="user.username">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputPassword1" class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword1" placeholder="Password" ng-model="user.password">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="firstname" class="col-sm-2 control-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="firstname" placeholder="First Name" ng-model="user.firstName">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="lastname" class="col-sm-2 control-label">Last Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name" ng-model="user.lastName">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="disabledSelect" class="col-sm-2 control-label">User Type</label>
+              <div class="col-sm-10">
+              <input class="form-control" id="disabledSelect" type="text" ng-model="user.type" disabled>
+              </div>
+            </div>
+
+            <div class="form-group" ng-show="user.type == 'Tutor'">
+              <label for="disabledSelect" class="col-sm-2 control-label">Field of Expertise</label>
+              <div class="col-sm-10">
+                <select class="form-control" ng-model="user.field" ng-options="subject for subject in fields"></select>
+              </div>
+            </div>
+
+            <div class="form-group" ng-show="user.type=='Tutor'">
+              <label for="disabledSelect" class="col-sm-2 control-label">Hourly Rate</label>
+              <div class="col-sm-10">
+                <input class="form-control" id="price" type="text" ng-model="user.price">
+              </div>
+            </div>
+
+            <div class="form-group" ng-show="user.type == 'Tutor'">
+              <label for="disabledSelect" class="col-sm-2 control-label">Location</label>
+              <div class="col-sm-10">
+                <select class="form-control" ng-model="user.location" ng-options="loc for loc in locations"></select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary btn-default btn-block" ng-click="update()">Update</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
