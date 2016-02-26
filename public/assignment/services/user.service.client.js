@@ -18,7 +18,7 @@
             ];
 
             var serviceType = {
-                findUserByUsernameAndPassword: findByNamePassword,
+                findUserByCredentials: findUserByCredentials,
                 findAllUsers: findAll,
                 createUser: create,
                 deleteUserById: deleteById,
@@ -27,7 +27,7 @@
 
             return serviceType;
 
-            function findByNamePassword(username, password, callback) {
+            function findUserByCredentials(username, password, callback) {
                 for (var i = 0; i < userArray.length; i++) {
                     if (userArray[i].username == username && userArray[i].password == password)
                         callback(userArray[i]);
