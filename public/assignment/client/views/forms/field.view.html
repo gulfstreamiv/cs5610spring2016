@@ -1,0 +1,111 @@
+ <h1 class="page-header">Forms: Registration Form</h1>
+
+  <ul class="nav nav-tabs">
+    <li><a href="#/forms">Forms</a></li>
+    <li class="active"><a href="#">Fields</a></li>
+  </ul>
+  <br>
+
+  <form role="form" ng-repeat="field in model.fields">
+
+    <div ng-switch="field.type">
+
+    <div class="form-group" ng-switch-when="TEXT">
+      <label for="fieldId.{{field._id}}">{{field.label}}</label><br>
+      <input type="text" id="fieldId.{{field._id}}" size="35" placeholder="{{field.placeholder}}">
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
+      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+    </div>
+    <div class="form-group" ng-switch-when="TEXTAREA">
+      <label for="fieldId.{{field._id}}">{{field.label}}</label><br>
+      <textarea type="text" id="fieldId.{{field._id}}" size="35" placeholder="{{field.placeholder}}"></textarea>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
+      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+    </div>
+    <div class="form-group" ng-switch-when="DATE">
+      <label for="fieldId.{{field._id}}">{{field.label}}</label><br>
+      <input type="date" id="fieldId.{{field._id}}" style="width: 265px;">
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
+      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+    </div>
+    <div class="form-group" ng-switch-when="OPTIONS">
+      <label for="fieldId.{{field._id}}">{{field.label}}</label><br>
+      <select id="fieldId.{{field._id}}" style="width: 265px;" ng-options="item.label for item in field.options">
+      </select>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
+      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
+      <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+    </div>
+
+    <div class="form-group" ng-switch-when="CHECKBOXES">
+      <label for="fieldId.{{field._id}}">{{field.label}}</label><br>
+      <div style="float: left;">
+        <form action="" id="fieldId.{{field._id}}" ng-repeat="item in field.options">
+          <input type="checkbox" value="{{item.value}}">{{item.label}}<br>
+        </form>
+      </div>
+
+      <div >
+        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
+        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+      </div>
+
+    </div>
+
+    <br><br><br>
+
+    <div class="form-group" ng-switch-when="RADIOS">
+      <div><label for="fieldId.{{field._id}}">{{field.label}}</label></div>
+      <div style="float: left;">
+        <form action="" id="fieldId.{{field._id}}" ng-repeat="item in field.options">
+          <input type="radio" value="{{item.value}}"> {{item.label}}<br>
+        </form>
+      </div>
+
+      <div >
+        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
+        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+      </div>
+
+    </div>
+
+    </div>
+
+    </form>
+
+    <br>
+    <hr>
+
+    <form role="form">
+    <div class="form-group">
+      <label>Add New Field:</label><br>
+      <div style="float: left;">
+        <select name="newfield" style="width: 265px;" ng-model="model.fieldType">
+          <option value="singlelinetext">Single Line Text</option>
+          <option value="multilinetext">Multi-Line Text</option>
+          <option value="date">Date</option>
+          <option value="dropdown">Dropdown</option>
+          <option value="checkbox">Checkboxes</option>
+          <option value="radio">Radio Buttons</option>
+        </select>
+      </div>
+
+      <div style="margin-left: 418px;">
+        <span style="font-size: 2em; float:right; color:transparent" class="glyphicon glyphicon-alert"></span>
+        <span style="font-size: 2em; float:right; color:transparent" class="glyphicon glyphicon-alert"></span>
+        <a style="font-size: 2em; float:right;" class="glyphicon glyphicon-plus" ng-click="AddField(model.fieldType)"></a>
+      </div>
+    </div>
+
+  </form>

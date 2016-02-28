@@ -14,6 +14,10 @@
                 controller: "FormController",
                 templateUrl: "views/forms/forms.view.html"
             })
+            .when("/user/:userId/form/:formId/fields", {
+                controller: "FieldController",
+                templateUrl: "views/forms/field.view.html"
+            })
             .when("/login", {
                 controller: 'LoginController',
                 templateUrl: "views/login/login.view.html"
