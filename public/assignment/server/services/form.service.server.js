@@ -1,38 +1,28 @@
 "use strict";
 
-module.exports = function(app, model, db){
+module.exports = function(app, model){
     app.get('/api/assignment/user/:userId/form', function(req, res){
         var userId = req.params.userId;
-        model.findFormByUserId(userId).then(function(retVal){
-            res.json(retVal);
-        })
+        res.json(model.findFormByUserId(userId));
     });
 
     app.get('/api/assignment/form/:formId', function(req, res){
         var formId = req.params.formId;
-        model.FindById(formId).then(function(retVal){
-            res.json(retVal);
-        })
+        res.json(model.FindById(formId));
     });
 
     app.delete('/api/assignment/form/:formId', function(req, res){
         var formId = req.params.formId;
-        model.Delete(formId).then(function(retVal){
-            res.json(retVal);
-        })
+        res.json(model.Delete(formId));
     });
 
     app.post('/api/assignment/user/:userId/form', function(req, res){
         var userId = req.params.userId;
-        model.Create(req.body).then(function(retVal){
-            res.json(retVal);
-        })
+        res.json(model.Create(req.body));
     });
 
     app.put('/api/assignment/form/:formId', function(req, res){
         var formId = req.params.formId;
-        model.Update(formId, req.body).then(function(retVal){
-            res.json(retVal);
-        })
+        res.json(model.Update(formId, req.body));
     })
 };

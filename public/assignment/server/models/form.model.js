@@ -1,6 +1,5 @@
 "use strict";
-
-var formArray = require("form.mock.json");
+var formArray = require("./form.mock.json");
 var uuid = require("node-uuid");
 
 module.exports = function(app) {
@@ -51,6 +50,7 @@ module.exports = function(app) {
                 formArray[i].fields = form.fields;
             }
         }
+        return formArray;
     }
 
     function Delete(id){
@@ -59,6 +59,7 @@ module.exports = function(app) {
                 formArray.splice(i, 1);
             }
         }
+        return formArray;
     }
 
     function findFormByTitle(title){
@@ -79,6 +80,8 @@ module.exports = function(app) {
         }
         return temp;
     }
+
+    //Field
 
     function findFieldByFormId(formId){
         var form = FindById(formId);
@@ -120,6 +123,7 @@ module.exports = function(app) {
                 }
             }
         }
+        return form.fields;
     }
 
 };

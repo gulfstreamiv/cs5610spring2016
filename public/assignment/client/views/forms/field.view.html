@@ -14,7 +14,7 @@
       <label for="fieldId.{{field._id}}">{{field.label}}</label><br>
       <input type="text" id="fieldId.{{field._id}}" size="35" placeholder="{{field.placeholder}}">
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
-      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
     </div>
@@ -22,7 +22,7 @@
       <label for="fieldId.{{field._id}}">{{field.label}}</label><br>
       <textarea type="text" id="fieldId.{{field._id}}" size="35" placeholder="{{field.placeholder}}"></textarea>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
-      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
     </div>
@@ -30,7 +30,7 @@
       <label for="fieldId.{{field._id}}">{{field.label}}</label><br>
       <input type="date" id="fieldId.{{field._id}}" style="width: 265px;">
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
-      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
     </div>
@@ -39,7 +39,7 @@
       <select id="fieldId.{{field._id}}" style="width: 265px;" ng-options="item.label for item in field.options">
       </select>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
-      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+      <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
     </div>
@@ -54,7 +54,7 @@
 
       <div >
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
-        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
       </div>
@@ -73,7 +73,7 @@
 
       <div >
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
-        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="removeField(field)"></a>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
       </div>
@@ -104,7 +104,7 @@
       <div style="margin-left: 418px;">
         <span style="font-size: 2em; float:right; color:transparent" class="glyphicon glyphicon-alert"></span>
         <span style="font-size: 2em; float:right; color:transparent" class="glyphicon glyphicon-alert"></span>
-        <a style="font-size: 2em; float:right;" class="glyphicon glyphicon-plus" ng-click="AddField(model.fieldType)"></a>
+        <a style="font-size: 2em; float:right;" class="glyphicon glyphicon-plus" ng-click="model.AddField(model.fieldType)"></a>
       </div>
     </div>
 

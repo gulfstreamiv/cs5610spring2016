@@ -2,7 +2,8 @@
     "use strict";
     angular.module("FormBuilderApp").factory("FieldService", FieldService);
 
-    function FieldService(){
+    function FieldService($http, $q){
+
         var serviceType = {
             createFieldForForm: createFieldForForm,
             getFieldsForForm: getFieldsForForm,

@@ -1,6 +1,5 @@
 "use strict";
-
-var userArray = require("user.mock.json");
+var userArray = require("./user.mock.json");
 var uuid = require("node-uuid");
 
 module.exports = function(app) {
@@ -44,9 +43,9 @@ module.exports = function(app) {
                 userArray[i].firstName = user.lastName;
                 userArray[i].firstName = user.username;
                 userArray[i].firstName = user.password;
-
             }
         }
+        return userArray;
     }
 
     function Delete(id){
@@ -55,6 +54,7 @@ module.exports = function(app) {
                 userArray.splice(i, 1);
             }
         }
+        return userArray;
     }
 
     function findUserByUsername(username){
