@@ -8,7 +8,7 @@
         $scope.user = $rootScope.user;
 
         $scope.update = function() {
-            UserService.updateUser($scope.user._id, $scope.user, function(updatedUser){
+            UserService.updateUser($scope.user._id, $scope.user).then(function(retVal){
                 //Do nothing
                 console.log(JSON.stringify($scope.user));
                 $location.path("home")

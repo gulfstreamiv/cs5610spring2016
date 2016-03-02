@@ -74,7 +74,7 @@ module.exports = function(app) {
     function findFormByUserId(userId){
         var temp = [];
         for(var i = 0; i<formArray.length; i++){
-            if(formArray[i].userId == userid){
+            if(formArray[i].userId == userId){
                 temp.push(formArray[i]);
             }
         }

@@ -16,8 +16,8 @@
             })
             .when("/user/:userId/form/:formId/fields", {
                 controller: "FieldController",
-                templateUrl: "views/forms/field.view.html",
-                controllerAs: "model"
+                controllerAs: "model",
+                templateUrl: "views/forms/field.view.html"
             })
             .when("/login", {
                 controller: 'LoginController',

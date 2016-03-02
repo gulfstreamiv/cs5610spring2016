@@ -10,8 +10,8 @@
                 email : $scope.user.email
             };
 
-            UserService.createUser(newUser, function (retVal){
-                $rootScope.user = retVal;
+            UserService.createUser(newUser).then(function (retVal){
+                $rootScope.user = retVal.data;
                 $location.path('profile');
             });
         }

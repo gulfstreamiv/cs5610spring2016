@@ -8,6 +8,7 @@
         $scope.updatedForm = {};
         $scope.form = {};
         $scope.form.title = "";
+        $scope.currentUser = currentUser;
 
         if(!currentUser) alert("Can't retrieve forms. You are not logged in yet.");
         else getForms();
@@ -17,21 +18,23 @@
             var newForm = {
                 title : $scope.form.title
             };
-            FormService.createFormForUser(currentUser._id, newForm, function(retVal){
-                $scope.forms.push(retVal);
+            FormService.createFormForUser(currentUser._id, newForm).then(function(retVal){
+                console.log(retVal.data);
+                //$scope.forms.push(retVal.data);
+                getForms();
             });
         };
 
         $scope.updateForm = function(){
             if($scope.selectedForm)
                 $scope.updatedForm.title = $scope.form.title;
-                FormService.updateFormById($scope.selectedForm._id, $scope.updatedForm, function(retVal){
+                FormService.updateFormById($scope.selectedForm._id, $scope.updatedForm).then(function(retVal){
                     getForms();
                 });
         };
 
         $scope.deleteForm = function(index){
-            FormService.deleteFormById($scope.forms[index]._id, function(retVal){
+            FormService.deleteFormById($scope.forms[index]._id).then(function(retVal){
                 getForms();
             });
         };
@@ -42,8 +45,8 @@
         };
 
         function getForms(){
-            FormService.findAllFormsForUser(currentUser._id, function(retVal){
-                $scope.forms = retVal;
+            FormService.findAllFormsForUser(currentUser._id).then(function(retVal){
+                $scope.forms = retVal.data;
             });
         }
 

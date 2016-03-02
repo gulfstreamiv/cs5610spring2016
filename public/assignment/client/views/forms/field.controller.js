@@ -3,12 +3,17 @@
     angular.module("FormBuilderApp").controller("FieldController", FieldController);
 
     function FieldController($routeParams, FieldService){
+        var thisCtrl = this;
         var uid = $routeParams.userId;
-        var formId = $$routeParams.formId;
+        var formId = $routeParams.formId;
 
-        this.fields = FieldService.getFieldsForForm(formId);
+        FieldService.getFieldsForForm(formId).then(function(retVal){
+            thisCtrl.fields = retVal.data;
+        });
 
-        this.addField = function(fieldType) {
+        console.log(thisCtrl.fields);
+
+        thisCtrl.addField = function(fieldType) {
             var field = {};
             switch (fieldType) {
                 case "singlelinetext":
@@ -55,14 +60,14 @@
             }
 
             FieldService.createFieldForForm(formId, field).then(function(retVal){
-                this.fields = retVal;
+                thisCtrl.fields = retVal.data;
             })
 
         };
 
-        this.removeField = function(field){
+        thisCtrl.removeField = function(field){
             FieldService.deleteFieldFromForm(formId, field._id).then(function(retVal){
-                this.fields = retVal;
+                thisCtrl.fields = retVal.data;
             })
         }
     }

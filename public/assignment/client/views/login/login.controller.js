@@ -5,7 +5,7 @@
     function LoginController($rootScope, $scope, $location, UserService){
         $scope.login = function(){
             UserService.findUserByCredentials($scope.username, $scope.password).then(function(retVal){
-                $rootScope.user = retVal;
+                $rootScope.user = retVal.data;
                 $location.path('profile')
             });
         }
