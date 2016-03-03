@@ -18,6 +18,7 @@ module.exports = function(app, model){
 
     app.post('/api/assignment/user/:userId/form', function(req, res){
         var userId = req.params.userId;
+        req.body.userId = userId;
         res.json(model.Create(req.body));
     });
 

@@ -20,17 +20,19 @@
             };
             FormService.createFormForUser(currentUser._id, newForm).then(function(retVal){
                 console.log(retVal.data);
-                //$scope.forms.push(retVal.data);
-                getForms();
+                $scope.form.title = "";
             });
+            getForms();
         };
 
         $scope.updateForm = function(){
-            if($scope.selectedForm)
+            if($scope.selectedForm) {
+                $scope.updatedForm.userId = currentUser._id;
                 $scope.updatedForm.title = $scope.form.title;
-                FormService.updateFormById($scope.selectedForm._id, $scope.updatedForm).then(function(retVal){
+                FormService.updateFormById($scope.selectedForm._id, $scope.updatedForm).then(function (retVal) {
                     getForms();
                 });
+            }
         };
 
         $scope.deleteForm = function(index){
@@ -47,6 +49,7 @@
         function getForms(){
             FormService.findAllFormsForUser(currentUser._id).then(function(retVal){
                 $scope.forms = retVal.data;
+                console.log(retVal.data);
             });
         }
 

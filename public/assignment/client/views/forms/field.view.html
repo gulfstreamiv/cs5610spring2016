@@ -43,7 +43,10 @@
       <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
       <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
-      <select id="fieldId.{{field._id}}" style="width: 265px;" ng-options="item.label for item in field.options">
+      <select id="fieldId.{{field._id}}" style="width: 265px;">
+        <option ng-repeat="item in field.options" value="{{item.value}}">
+          {{item.label}}
+        </option>
       </select>
     </div>
 
