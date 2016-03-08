@@ -28,6 +28,7 @@
         $scope.updateForm = function(){
             if($scope.selectedForm) {
                 $scope.updatedForm.userId = currentUser._id;
+                $scope.updatedForm = $scope.selectedForm;
                 $scope.updatedForm.title = $scope.form.title;
                 FormService.updateFormById($scope.selectedForm._id, $scope.updatedForm).then(function (retVal) {
                     getForms();
