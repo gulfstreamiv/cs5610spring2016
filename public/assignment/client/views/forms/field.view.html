@@ -1,4 +1,4 @@
- <h1 class="page-header">Forms: Registration Form</h1>
+  <h1 class="page-header">Forms: Registration Form</h1>
 
   <ul class="nav nav-tabs">
     <li><a href="#/forms">Forms</a></li>
@@ -6,17 +6,50 @@
   </ul>
   <br>
 
+ <div id="sortable" style="overflow: hidden; position:relative">
   <form role="form" ng-repeat="field in model.fields">
 
-    <div ng-switch="field.type">
+    <!--<li ng-repeat="item in fieldArray" ng-bind="item.label"></li>-->
+    <!--<pre ng-bind="fieldArray|json"></pre>-->
 
+    <div ng-switch="field.type">
       <div class="form-group" ng-switch-when="TEXT">
         <label for="fieldId.{{field._id}}">{{field.label}}</label><br>
         <input type="text" id="fieldId.{{field._id}}" size="35" placeholder="{{field.placeholder}}">
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
         <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
-        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal-singleLine-{{field._id}}"></a>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal-singleLine-{{field._id}}" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Single Line Field</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="label.{{field._id}}">Label</label>
+                  <input type="text" class="form-control" id="label.{{field._id}}" placeholder="" ng-model="model.edit.label"/>
+                </div>
+                <div class="form-group">
+                  <label for="placeholder.{{field._id}}">Placeholder</label>
+                  <input type="text" class="form-control" id="placeholder.{{field._id}}" placeholder="" ng-model="model.edit.placeholder"/>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal" style="float: right;" ng-click="model.editLine(field._id)">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
       <div class="form-group" ng-switch-when="TEXTAREA">
@@ -25,7 +58,36 @@
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
         <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
-        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal-muliline-{{field._id}}"></a>
+
+        <div class="modal fade" id="myModal-muliline-{{field._id}}" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Multiple Lines Field</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="label.{{field._id}}">Label</label>
+                  <input type="text" class="form-control" id="label.{{field._id}}" placeholder="" ng-model="model.edit.label"/>
+                </div>
+                <div class="form-group">
+                  <label for="placeholder.{{field._id}}">Placeholder</label>
+                  <input type="text" class="form-control" id="placeholder.{{field._id}}" placeholder="" ng-model="model.edit.placeholder"/>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal" style="float: right;" ng-click="model.editLine(field._id)">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
       <div class="form-group" ng-switch-when="DATE">
@@ -34,7 +96,32 @@
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
         <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
-        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal-date-{{field._id}}"></a>
+
+        <div class="modal fade" id="myModal-date-{{field._id}}" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Date Field</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="label.{{field._id}}">Label</label>
+                  <input type="text" class="form-control" id="label.{{field._id}}" placeholder="" ng-model="model.edit.label"/>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal" style="float: right;" ng-click="model.editLine(field._id)">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
       <div class="form-group" ng-switch-when="OPTIONS">
@@ -42,12 +129,42 @@
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
         <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
-        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal-option-{{field._id}}"></a>
         <select id="fieldId.{{field._id}}" style="width: 265px;">
           <option ng-repeat="item in field.options" value="{{item.value}}">
             {{item.label}}
           </option>
         </select>
+
+        <div class="modal fade" id="myModal-option-{{field._id}}" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Dropdown Field</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="label.{{field._id}}">Label</label>
+                  <input type="text" class="form-control" id="label.{{field._id}}" placeholder="" ng-model="model.edit.label"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="options.{{field._id}}">Options</label>
+                  <textarea type="text" class="form-control" id="options.{{field._id}}" placeholder="" ng-list="&#10;" ng-trim="false" ng-model="model.edit.options"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal" style="float: right;" ng-click="model.editOption(field._id)">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
 
@@ -56,10 +173,40 @@
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
         <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
-        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal-checkbox-{{field._id}}"></a>
         <li action="" id="fieldId.{{field._id}}" ng-repeat="item in field.options">
           <input type="checkbox" name="checkboxOption" value="{{item.value}}"> {{item.label}}<br>
         </li>
+
+        <div class="modal fade" id="myModal-checkbox-{{field._id}}" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Checkbox Field</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="label.{{field._id}}">Label</label>
+                  <input type="text" class="form-control" id="label.{{field._id}}" placeholder="" ng-model="model.edit.label"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="options.{{field._id}}">Options</label>
+                  <textarea type="text" class="form-control" id="options.{{field._id}}" placeholder="" ng-list="&#10;" ng-trim="false" ng-model="model.edit.options"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal" style="float: right;" ng-click="model.editOption(field._id)">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
       <div class="form-group" ng-switch-when="RADIOS">
@@ -67,16 +214,47 @@
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-menu-hamburger"></span>
         <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-remove" ng-click="model.removeField(field)"></a>
         <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-plus"></span>
-        <span style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil"></span>
+        <a style="font-size: 2em; float: right;" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal-radio-{{field._id}}"></a>
         <li id="fieldId.{{field._id}}" ng-repeat="item in field.options">
           <input type="radio" name="radioOption" value="{{item.value}}"> {{item.label}}<br>
         </li>
+
+        <div class="modal fade" id="myModal-radio-{{field._id}}" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Radio Button Field</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="label.{{field._id}}">Label</label>
+                  <input type="text" class="form-control" id="label.{{field._id}}" placeholder="" ng-model="model.edit.label"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="options.{{field._id}}">Options</label>
+                  <textarea type="text" class="form-control" id="options.{{field._id}}" placeholder="" ng-list="&#10;" ng-trim="false" ng-model="model.edit.options"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal" style="float: right;" ng-click="model.editOption(field._id)">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
       </div>
 
     </div>
 
   </form>
-
+ </div>
     <br>
     <hr>
 

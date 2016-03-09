@@ -45,9 +45,12 @@ module.exports = function(app) {
     function Update(id, form){
         for(var i = 0; i<formArray.length; i++){
             if(formArray[i]._id == id){
-                formArray[i].title = form.title;
-                formArray[i].userId = form.userId;
-                formArray[i].fields = form.fields;
+                for(var attribute in form){
+                    formArray[i][attribute] = form[attribute];
+                }
+                //formArray[i].title = form.title;
+                //formArray[i].userId = form.userId;
+                //formArray[i].fields = form.fields;
             }
         }
         return formArray;
