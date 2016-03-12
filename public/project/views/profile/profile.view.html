@@ -50,25 +50,25 @@
             <div class="form-group">
               <label for="disabledSelect" class="col-sm-2 control-label">User Type</label>
               <div class="col-sm-10">
-              <input class="form-control" id="disabledSelect" type="text" ng-model="user.type" disabled>
+              <input class="form-control" id="disabledSelect" type="text" ng-value="getType(user.type)" disabled>
               </div>
             </div>
 
-            <div class="form-group" ng-show="user.type == 'Tutor'">
+            <div class="form-group" ng-show="user.type == 'tutor'">
               <label for="disabledSelect" class="col-sm-2 control-label">Field of Expertise</label>
               <div class="col-sm-10">
                 <select class="form-control" ng-model="user.field" ng-options="subject for subject in fields"></select>
               </div>
             </div>
 
-            <div class="form-group" ng-show="user.type=='Tutor'">
+            <div class="form-group" ng-show="user.type=='tutor'">
               <label for="disabledSelect" class="col-sm-2 control-label">Hourly Rate</label>
               <div class="col-sm-10">
                 <input class="form-control" id="price" type="text" ng-model="user.price">
               </div>
             </div>
 
-            <div class="form-group" ng-show="user.type == 'Tutor'">
+            <div class="form-group" ng-show="user.type == 'tutor'">
               <label for="disabledSelect" class="col-sm-2 control-label">Location</label>
               <div class="col-sm-10">
                 <select class="form-control" ng-model="user.location" ng-options="loc for loc in locations"></select>

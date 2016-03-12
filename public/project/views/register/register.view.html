@@ -19,46 +19,46 @@
                     <div class="row">
                       <div class="col-lg-6">
 
-                        <form role="form">
+                        <form role="form" name="registrationForm">
                           <div class="form-group">
                             <label>Username</label>
-                            <input type="username" ng-model="user.username" class="form-control" id="inputUsername" placeholder="Username">
+                            <input type="username" ng-model="user.username" class="form-control" id="inputUsername" placeholder="Username" ng-required="true">
                             <p class="help-block">Example block-level help text here.</p>
                           </div>
                           <div class="form-group">
                             <label>Password</label>
-                            <input type="password" ng-model="user.password" class="form-control" id="inputPassword3" placeholder="Password">
+                            <input type="password" ng-model="user.password" class="form-control" id="inputPassword3" placeholder="Password" ng-required="true">
                           </div>
                           <div class="form-group">
                             <label>Verify Password</label>
-                            <input type="password" ng-model="user.verifyPassword" class="form-control" id="verifyPassword3" placeholder="Verify Password">
+                            <input type="password" ng-model="user.verifyPassword" class="form-control" id="verifyPassword3" placeholder="Verify Password" ng-required="true">
                           </div>
                           <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" ng-model="user.email" class="form-control" id="inputEmail3" placeholder="example@example.com">
+                            <input type="email" ng-model="user.email" class="form-control" id="inputEmail3" placeholder="example@example.com" ng-required="true">
                           </div>
                           <div class="form-group">
                             <label>Account Type</label>
                             <div class="radio">
                               <label>
-                                <input type="radio" ng-model="user.type" name="studentuser" id="student" value="Student">Student
+                                <input type="radio" ng-init="user.type = 'student'" ng-model="user.type" name="studentuser" id="student" value="student" ng-checked="true">Student
                               </label>
                             </div>
                             <div class="radio">
                               <label>
-                                <input type="radio" ng-model="user.type" name="tutoruser" id="tutor" value="Tutor">Tutor
+                                <input type="radio" ng-model="user.type" name="tutoruser" id="tutor" value="tutor">Tutor
                               </label>
                             </div>
                           </div>
-                          <div class="form-group" ng-show="user.type == 'Tutor'">
+                          <div class="form-group" ng-show="user.type == 'tutor'">
                             <label>Field of Expertise </label>
                             <select class="form-control" ng-model="user.field" ng-options="subject for subject in fields">
                             </select>
                           </div>
 
-                          <div class="form-group" ng-show="user.type == 'Tutor'">
+                          <div class="form-group" ng-show="user.type == 'tutor'">
                             <label>Hourly Rate </label>
-                            <input type="text" class="form-control" ng-model="user.price" placeholder="Example: 15.00">
+                            <input type="text" class="form-control" ng-model="user.price" placeholder="Example: 15.00" ng-required="true">
                             </input>
                           </div>
 
@@ -71,12 +71,12 @@
                           <div class="form-group" ng-show="user.field == 'Computer Science'">
                             {{user.field}}
                           </div>
-                        </form>
 
-                        <button type="button" class="btn btn-primary btn-block" ng-click="register()">Register</button>
-                        <button class="btn btn-primary btn-block btn-social btn-github" style="background-color:lightslategrey">
-                          <i class="fa fa-github"></i> Sign up with GitHub
-                        </button>
+                          <button type="submit" class="btn btn-primary btn-block" ng-click="registrationForm.$valid && register()">Register</button>
+                          <button class="btn btn-primary btn-block btn-social btn-github" style="background-color:lightslategrey">
+                            <i class="fa fa-github"></i> Sign up with GitHub
+                          </button>
+                        </form>
 
                       </div>
                       <!-- /.col-lg-6 (nested) -->

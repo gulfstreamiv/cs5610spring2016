@@ -38,7 +38,7 @@ function drawMarker(lat, lng, titleVar) {
 	if(titleVar == 'Student')
 		var image = {
 			url: 'markerStudent.png',
-			size: new google.maps.Size(30, 30),
+			size: new google.maps.Size(60, 60),
 			origin: new google.maps.Point(0, 0),
 			anchor: new google.maps.Point(15, 15)
 		};

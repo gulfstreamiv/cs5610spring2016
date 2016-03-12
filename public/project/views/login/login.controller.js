@@ -7,7 +7,8 @@
             UserService.findUserByUsernameAndPassword($scope.username, $scope.password, function(retVal){
                 $rootScope.user = retVal;
                 console.log($rootScope.user);
-                $location.path('profile');
+                if($rootScope.user.roles.indexOf("student")!=-1) $location.path('studenthome');
+                else $location.path('tutorhome');
             });
         }
     }

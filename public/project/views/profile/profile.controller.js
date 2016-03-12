@@ -28,6 +28,11 @@
                 console.log(JSON.stringify($scope.user));
                 $location.path("home")
             });
+        };
+
+        $scope.getType = function(type){
+            if(type.localeCompare("student")) return "STUDENT";
+            else return "TUTOR";
         }
 
     }

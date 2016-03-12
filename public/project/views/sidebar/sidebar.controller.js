@@ -14,13 +14,19 @@
 
         $scope.currentStudent = function(){
             if(!$rootScope.user) return false;
-            return $rootScope.user.roles.indexOf("Student") != -1;
+            return $rootScope.user.roles.indexOf("student") != -1;
         };
 
         $scope.currentTutor = function(){
             if(!$rootScope.user) return false;
-            return $rootScope.user.roles.indexOf("Tutor") != -1;
+            return $rootScope.user.roles.indexOf("tutor") != -1;
         };
+
+        $scope.homePage = function(){
+            if(!$rootScope.user) $location.path('home');
+            else if($rootScope.user.roles.indexOf('student')!=-1) $location.path('studenthome');
+            else $location.path('tutorhome');
+        }
     }
 
 

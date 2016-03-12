@@ -10,8 +10,12 @@
                 controller: "HomeController",
                 templateUrl: "views/home/home.view.html"
             })
+            .when("/tutorhome", {
+                controller: "TutorHomeController",
+                templateUrl: "views/home/tutor.home.view.html"
+            })
             .when("/studenthome", {
-                controller: "StudentController",
+                controller: "StudentHomeController",
                 templateUrl: "views/home/student.home.view.html"
             })
             .when("/forms", {
@@ -38,6 +42,10 @@
             .when("/reservation", {
                 controller: "ReservationController",
                 templateUrl: "views/reservation/reservation.view.html"
+            })
+            .when("/students/:uid/history", {
+                controller: "StudentHistoryController",
+                templateUrl: "views/history/student.history.view.html"
             })
             .when("/students/:uid/:field/:time/:location/:duration", {
                 controller: "SelectionController",

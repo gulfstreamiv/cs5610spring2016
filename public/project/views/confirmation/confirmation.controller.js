@@ -23,7 +23,7 @@
         });
 
         $scope.confirm = function(){
-            ReservationService.createReservation(sid, tid, field, time, location, duration, function(retVal){
+            ReservationService.createReservation(sid, tid, field, time, location, duration, $scope.price, function(retVal){
                 console.log(retVal);
             });
             $location.path('studenthome');

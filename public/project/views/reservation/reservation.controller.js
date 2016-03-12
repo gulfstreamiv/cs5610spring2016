@@ -8,10 +8,11 @@
         $scope.reservation.field = "N/A";
         $scope.locations =
         [
-            "UW",
-            "SLU",
-            "Northgate",
-            "Bellevue"
+            {label:"University of Washington, Seattle, WA", value:"UW"},
+            {label:"South Lake Union, Seattle, WA", value:"SLU"},
+            {label:"Northgate, Seattle, WA", value:"Northgate"},
+            {label:"Bellevue, WA", value:"Northgate"},
+            {label:"Northeastern University, Seattle, WA", value:"NEU-Seattle"}
         ];
 
         $scope.fields =
@@ -22,9 +23,9 @@
         ];
 
         $scope.durations = [
-            "45 minutes",
-            "90 minutes",
-            "120 minutes"
+            "45 Minutes",
+            "90 Minutes",
+            "120 Minutes"
         ];
 
         var tomorrow = new Date();
