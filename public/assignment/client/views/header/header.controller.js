@@ -11,7 +11,7 @@
         };
 
         $scope.currentAdmin = function(){
-            if(!$rootScope.user) return false;
+            if(!$rootScope.user || !$rootScope.user.roles) return false;
             return $rootScope.user.roles.indexOf("admin") != -1;
         };
 
