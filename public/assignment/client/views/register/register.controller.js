@@ -11,7 +11,12 @@
             };
 
             UserService.createUser(newUser).then(function (retVal){
-                $rootScope.user = retVal.data;
+                //retVal is a collection of users!
+                for(var i = 0 ; i<retVal.data.length; i++){
+                    if(retVal.data[i].username === $scope.user.username) {
+                        $rootScope.user = retVal.data[i];
+                    }
+                }
                 $location.path('profile');
             });
         }

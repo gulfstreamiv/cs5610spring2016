@@ -41,7 +41,7 @@
 
             function create(user) {
                 var deferred = $q.defer();
-                $http.post('/api/assignment/user').then(function(retVal){
+                $http.post('/api/assignment/user', user).then(function(retVal){
                     deferred.resolve(retVal);
                 });
                 return deferred.promise;
