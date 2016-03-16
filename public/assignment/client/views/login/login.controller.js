@@ -6,6 +6,7 @@
         $scope.login = function(){
             UserService.findUserByCredentials($scope.username, $scope.password).then(function(retVal){
                 $rootScope.user = retVal.data;
+                console.log(retVal.data);
                 $location.path('profile')
             });
         }

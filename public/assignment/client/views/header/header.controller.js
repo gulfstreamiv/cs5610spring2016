@@ -1,8 +1,6 @@
 (function(){
     "use strict";
-    angular
-        .module("FormBuilderApp")
-        .controller("HeaderController", HeaderController);
+    angular.module("FormBuilderApp").controller("HeaderController", HeaderController);
 
     function HeaderController($rootScope, $scope, $location){
 
@@ -11,7 +9,7 @@
         };
 
         $scope.currentAdmin = function(){
-            if(!$rootScope.user) return false;
+            if(!$rootScope.user || !$rootScope.user.roles) return false;
             return $rootScope.user.roles.indexOf("admin") != -1;
         };
 

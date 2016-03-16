@@ -12,29 +12,44 @@ module.exports = function(app, model) {
         var password = req.query.password;
 
         if(username == null && password == null){
-            res.json(model.FindAll());
+            model.FindAll().then(function(retVal) {
+                res.json(retVal);
+                console.log(retVal);
+            });
         }
         else if(password == null){
-            res.json(model.findUserByUsername(username));
+            model.findUserByUsername(username).then(function(retVal) {
+                res.json(retVal);
+                console.log(retVal);
+            });
         }
         else{
-            res.json(model.findUserByCredentials(username, password));
+            model.findUserByCredentials(username, password).then(function(retVal) {
+                res.json(retVal);
+                console.log(retVal);
+            });
         }
     });
 
     app.get('/api/assignment/user/:id', function(req, res){
         var userId = req.params.id;
-        res.json(model.FindById(userId));
+        model.FindById(userId).then(function(retVal) {
+            res.json(retVal);
+        });
     });
 
     app.put('/api/assignment/user/:id', function(req, res){
         var userId = req.params.id;
-        res.json(model.Update(userId, req.body));
+        model.Update(userId, req.body).then(function(retVal) {
+            res.json(retVal);
+        });
     });
 
     app.delete('/api/assignment/user/:id', function(req, res){
         var userId = req.params.id;
-        res.json(model.Delete(userId));
+        model.Delete(userId).then(function(retVal) {
+            res.json(retVal);
+        });
     })
 
 };
