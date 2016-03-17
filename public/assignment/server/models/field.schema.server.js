@@ -3,11 +3,11 @@ module.exports = function(mongoose){
     var Schema = mongoose.Schema;
     var fieldSchema = new Schema(
         {
-            _id : Number,
+            _id : String,
             label : String,
             type: {
                 type: String,
-                enum: ["TEXT", "EMAIL", "PASSWORD", "OPTIONS", "DATE", "RADIOS", "CHECKBOXES"]
+                enum: ["TEXT", "TEXTAREA", "EMAIL", "PASSWORD", "OPTIONS", "DATE", "RADIOS", "CHECKBOXES"]
             },
             placeholder : String,
             options : [{label:String, value:String}]

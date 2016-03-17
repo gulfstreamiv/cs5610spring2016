@@ -1,8 +1,8 @@
 [
   {
     "_id":"000",
+    "userId":"123",
     "title":"Contacts",
-    "userId":123,
     "fields":[
       {
         "_id":"111",
@@ -49,12 +49,14 @@
         "type":"EMAIL",
         "placeholder":"Email"
       }
-    ]
+    ],
+    "created" : {},
+    "updated" : {}
   },
   {
     "_id":"010",
+    "userId":"234",
     "title":"ToDo",
-    "userId":234,
     "fields":[
       {
         "_id":"777",
@@ -73,6 +75,8 @@
         "label":"Due Date",
         "type":"DATE"
       }
-    ]
+    ],
+    "created" : {},
+    "updated" : {}
   }
 ]

@@ -1,8 +1,12 @@
 "use strict";
 
 module.exports = function(app, model) {
+
+
     app.post('/api/assignment/user', function(req, res){
-        res.json(model.Create(req.body));
+        model.Create(req.body).then(function(retVal){
+            res.json(retVal);
+        });
     });
 
     app.get('/api/assignment/user', function(req, res){

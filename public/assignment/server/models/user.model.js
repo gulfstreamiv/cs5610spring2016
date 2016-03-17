@@ -9,21 +9,10 @@ module.exports = function(app, mongoose, db) {
     var userModel = mongoose.model("userModel", userSchema);
 
     userArray.forEach(function(element, index, array){
-        var formatted = new userModel(element);
-        Create(formatted);
+        //console.log(element);
+        //var formatted = new userModel(element);
+        Create(element);
     });
-
-    //Create({"_id":123, "username":"alice", "password":"alice", "firstName":"Alice", "lastName":"Wonderland",
-    //    "emails": ["student@student.com"], "phones":["123123123"]});
-    //
-    //var temp = {"_id":123, "username":"alice", "password":"alice", "firstName":"Alice", "lastName":"Wonderland",
-    //    "emails": ["student@student.com"], "phones":["123123123"]};
-
-    //var toInsert = new userModel(temp);
-    //toInsert.save(function(err){
-    //    if ( err ) throw err;
-    //    console.log("User Saved Successfully");
-    //});
 
     var serviceType = {
         Create : Create,
@@ -39,14 +28,20 @@ module.exports = function(app, mongoose, db) {
     return serviceType;
 
     function Create(user){
+        //console.log("Server side received:" + user);
+        var toInsert = {};
+        for(var attribute in user){
+            toInsert[attribute] = user[attribute];
+        }
         //user._id = uuid.v4();
         //userArray.push(user);
         //return userArray;
         var deferred = q.defer();
-        user._id = uuid.v4();
-        userModel.create(user, function(err, retVal){
+        if(!toInsert._id) toInsert._id = uuid.v4();
+        var formatted = new userModel(toInsert);
+        userModel.create(formatted, function(err, retVal){
             userModel.find(function(err, retVal){
-                console.log("registering user...")
+                console.log("registering user..." + user.username);
                 deferred.resolve(retVal);
             });
         });

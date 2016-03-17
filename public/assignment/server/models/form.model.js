@@ -33,13 +33,19 @@ module.exports = function(app, mongoose, db) {
     return serviceType;
 
     function Create(form){
-        form._id = uuid.v4();
+        var toInsert = {};
+        for(var attribute in form){
+            toInsert[attribute] = form[attribute];
+        }
         //formArray.push(form);
         //return formArray;
         var deferred = q.defer();
-        formModel.create(form, function(err, retVal){
+        if(!toInsert._id) toInsert._id = uuid.v4();
+        var formatted = new formModel(toInsert);
+        formModel.create(formatted, function(err, retVal){
             formModel.find(function(err, retVal){
                 deferred.resolve(retVal);
+                console.log("Inserting forms..."+formatted._id)
             });
         });
         return deferred.promise;
@@ -159,9 +165,11 @@ module.exports = function(app, mongoose, db) {
         //if(form) return form.fields;
         //else return null;
         var deferred = q.defer();
-        var condition = {formId : formId};
+        var condition = {_id : String(formId)};
+        console.log(condition);
         formModel.findOne(condition, function(err, retVal){
             if(err) deferred.reject(err);
+            console.log(retVal);
             deferred.resolve(retVal.fields);
         });
         return deferred.promise;
