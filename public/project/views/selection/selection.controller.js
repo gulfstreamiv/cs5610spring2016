@@ -15,6 +15,7 @@
 
         function getTutors() {
             UserService.findByLocationField($routeParams.location, $routeParams.field, function (retVal) {
+                console.log(retVal);
                 $scope.availableTutors = retVal;
             });
         }

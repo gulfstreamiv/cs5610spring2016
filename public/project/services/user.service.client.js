@@ -6,7 +6,8 @@
 
             var userArray = [
                 {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
-                    "username":"alice",  "password":"alice",   "roles": ["student"]		},
+                    "username":"alice",  "password":"alice",   "roles": ["tutor"],
+                    "type":"tutor", "field":"Computer Science", "location": "SLU", "price":17.00    },
                 {	"_id":234, "firstName":"Bob",              "lastName":"Hope",
                     "username":"bob",    "password":"bob",     "roles": ["admin"]		},
                 {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
@@ -16,9 +17,13 @@
                 {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
                     "username":"ed",     "password":"ed",      "roles": ["student"]		},
                 {"_id":789, "firstName":"Bolun", "lastName":"Hu", "username":"bolun", "password":"bolun", "roles":["student"], "email":"bolun@bolun.com",
-                "type":"Student", "field":"N/A", "location": "UW"},
+                "type":"student", "field":"N/A", "location": "UW"},
                 {"_id":890, "firstName":"Aaron", "lastName":"Gordon", "username":"aaron", "password":"aaron", "roles":["tutor"],
-                    "type":"Tutor", "field":"Computer Science", "location": "SLU", "price":17.00}
+                    "type":"tutor", "field":"Computer Science", "location": "SLU", "price":17.00}
+            ];
+
+            var feedbackArray = [
+                {"_id": 666, "user_id": 789, "feedback": "very good experience!", "rating":3, "date":"2015-10-21T13:28:06.419Z"}
             ];
 
             var serviceType = {
@@ -28,7 +33,8 @@
                 findById : findById,
                 createUser: create,
                 deleteUserById: deleteById,
-                updateUser: updateUser
+                updateUser: updateUser,
+                addFeedback : addFeedback
             };
 
             return serviceType;
@@ -49,9 +55,10 @@
             }
 
             function findByLocationField(location, field, callback){
+                console.log("finding tutors...");
                 var temp = [];
                 for(var i = 0; i<userArray.length; i++){
-                    if(userArray[i].type == "Tutor" && userArray[i].field == field && userArray[i].location == location)
+                    if(userArray[i].type == "tutor" && userArray[i].field == field && userArray[i].location == location)
                         temp.push(userArray[i]);
                 }
                 callback(temp);
@@ -79,10 +86,9 @@
             function updateUser(userId, user, callback) {
                 for (var i = 0; i < userArray.length; i++) {
                     if (userArray[i]._id == userId) {
-                        userArray[i].firstName = user.firstName;
-                        userArray[i].lastName = user.lastName;
-                        userArray[i].username = user.username;
-                        userArray[i].password = user.password;
+                        for(var attr in user){
+                            userArray[i][attr] = user[attr];
+                        }
                         callback(userArray[i]);
                     }
                 }
@@ -94,6 +100,12 @@
 
                     }
                 }
+            }
+
+            function addFeedback(feedback, callback){
+                feedback.date = new Date();
+                feedbackArray.push(feedback);
+                callback(feedback);
             }
         }
 

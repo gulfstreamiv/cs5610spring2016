@@ -47,6 +47,10 @@
                 controller: "StudentHistoryController",
                 templateUrl: "views/history/student.history.view.html"
             })
+            .when("/tutors/:uid/history", {
+                controller: "TutorHistoryController",
+                templateUrl: "views/history/tutor.history.view.html"
+            })
             .when("/students/:uid/:field/:time/:location/:duration", {
                 controller: "SelectionController",
                 templateUrl: "views/selection/selection.view.html"
@@ -54,6 +58,10 @@
             .when("/confirm/:sid/:tid/:field/:time/:location/:duration", {
                 controller: "ConfirmationController",
                 templateUrl: "views/confirmation/confirmation.view.html"
+            })
+            .when("/feedback", {
+                controller: "FeedbackController",
+                templateUrl: "views/feedback/feedback.view.html"
             })
             .otherwise({
                 redirectTo: "/home"

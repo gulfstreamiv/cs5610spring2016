@@ -74,6 +74,7 @@
         function updateReservationById(rid, newOrder, callback) {
             for(var i = 0; i<reservationArray.length; i++){
                 if(reservationArray[i]._id == rid){
+                    console.log("updating order: " + rid + "from service");
                     for(var attribute in newOrder){
                         reservationArray[i][attribute] = newOrder[attribute];
                     }

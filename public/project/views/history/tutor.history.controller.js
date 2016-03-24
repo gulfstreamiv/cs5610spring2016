@@ -1,8 +1,8 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("StudentHistoryController", StudentHistoryController);
+    angular.module("FormBuilderApp").controller("TutorHistoryController", TutorHistoryController);
 
-    function StudentHistoryController($rootScope, $scope, $routeParams, ReservationService, UserService){
+    function TutorHistoryController($rootScope, $scope, $routeParams, ReservationService, UserService){
         $scope.uid = $routeParams.uid;
         $scope.field = $routeParams.field;
         $scope.location = $routeParams.location;
@@ -41,16 +41,16 @@
             "16:00 " + tomorrow.toString().slice(0,10)
         ];
 
-        ReservationService.findAllReservationsForStudent($routeParams.uid, function (retVal) {
+        ReservationService.findAllReservationsForTutor($routeParams.uid, function (retVal) {
             $scope.orderList = retVal;
         });
 
-        $scope.getTutorName = function(tid) {
-            UserService.findById(tid, function(retVal){
+        $scope.getStudentName = function(sid) {
+            UserService.findById(sid, function(retVal){
                 //console.log(retVal.firstName + " " + retVal.lastName);
-                $scope.tempTutor = retVal;
+                $scope.tempStudent = retVal;
             });
-            return $scope.tempTutor.firstName + " " + $scope.tempTutor.lastName;
+            return $scope.tempStudent.firstName + " " + $scope.tempStudent.lastName;
         };
 
         //edit reservation options
@@ -60,8 +60,10 @@
             newOrder.location = $scope.reservation.location;
             newOrder.duration = fetchInt($scope.reservation.duration);
             newOrder.price = Math.round(getTutorRateFromOrder(orderId) * fetchInt($scope.reservation.duration) / 60);
+            //console.log("updating order: " + orderId);
             ReservationService.updateReservationById(orderId, newOrder, function(retVal){
-                ReservationService.findAllReservationsForStudent($routeParams.uid, function (retVal) {
+                //for(var i = 0 ; i< retVal.length; i++) console.log(retVal[i]);
+                ReservationService.findAllReservationsForTutor($routeParams.uid, function (retVal) {
                     $scope.orderList = retVal;
                 });
             });
@@ -92,7 +94,7 @@
                 tid = retVal.tutorId;
             });
             UserService.findById(tid, function(retVal){
-                console.log("updated price is " + retVal.price);
+                console.log("updated price/hour is " + retVal.price);
                 rate = retVal.price;
             });
             return rate;

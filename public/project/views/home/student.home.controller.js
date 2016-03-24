@@ -9,7 +9,7 @@
             return $rootScope.user;
         };
 
-        $scope.getFirstName = function(){
+        $scope.getUsername = function(){
             if($rootScope.user)
                 return $rootScope.user.username;
             return null;

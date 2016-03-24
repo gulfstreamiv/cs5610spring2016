@@ -23,6 +23,7 @@
         $scope.user = $rootScope.user;
 
         $scope.update = function() {
+            console.log("updating user...");
             UserService.updateUser($scope.user._id, $scope.user, function(updatedUser){
                 //Do nothing
                 console.log(JSON.stringify($scope.user));
@@ -31,7 +32,7 @@
         };
 
         $scope.getType = function(type){
-            if(type.localeCompare("student")) return "STUDENT";
+            if(type.indexOf("student")!=-1) return "STUDENT";
             else return "TUTOR";
         }
 
