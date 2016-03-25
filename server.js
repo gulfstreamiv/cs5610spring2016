@@ -50,4 +50,8 @@ require("./public/assignment/server/app.js")(app, mongoose, db);
 //require("./public/project/compilebox/API/app.js")(app);
 //require("./public/project/server/app.js")(app, mongoose);
 
+app.get("/", function(req, res) {
+    res.sendfile('index.html', {root: __dirname });
+});
+
 app.listen(port, ipaddress);
