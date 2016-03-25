@@ -203,11 +203,13 @@ module.exports = function(app, mongoose, db) {
         var deferred = q.defer();
         var condition = {_id:formId};
         formModel.findOne(condition, function(err, retForm){
+            if(err) deferred.reject(err);
             var fieldIndex = retForm.fields.findIndex(function(element, index, array){
                 return element._id == fieldId;
             });
             retForm.fields.splice(fieldIndex, 1);
             retForm.save(function(err, retVal){
+                if(err) deferred.reject(err);
                 deferred.resolve(retForm.fields);
             });
         });
@@ -245,6 +247,7 @@ module.exports = function(app, mongoose, db) {
         var deferred  = q.defer();
         var condition = {_id : formId};
         formModel.findOne(condition, function(err, retForm){
+            if(err) deferred.reject(err);
             var fieldIndex = retForm.fields.findIndex(function(element, index, array){
                 return element._id == fieldId;
             });
@@ -252,6 +255,7 @@ module.exports = function(app, mongoose, db) {
                 retForm.fields[fieldIndex][attribute] = field[attribute];
             }
             retForm.save(function(err, retVal){
+                if(err) deferred.reject(err);
                 deferred.resolve(retForm.fields);
             });
         });
