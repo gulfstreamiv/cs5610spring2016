@@ -25,7 +25,7 @@
 
             function findUserByCredentials(username, password) {
                 var deferred = $q.defer();
-                $http.get('/api/assignment/user?username='+username+'&password='+password,{dataType:"jsonp"}).then(function(retVal){
+                $http.get('/api/assignment/user?username='+username+'&password='+password).then(function(retVal){
                     deferred.resolve(retVal);
                 });
                 return deferred.promise;

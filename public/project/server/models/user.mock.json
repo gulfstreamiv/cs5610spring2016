@@ -1,0 +1,17 @@
+[
+  {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
+    "username":"alice",  "password":"alice",   "roles": ["tutor"],
+    "type":"tutor", "field":"Computer Science", "location": "SLU", "price":17.00    },
+  {	"_id":234, "firstName":"Bob",              "lastName":"Hope",
+    "username":"bob",    "password":"bob",     "roles": ["admin"]		},
+  {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
+    "username":"charlie","password":"charlie", "roles": ["faculty"]		},
+  {	"_id":456, "firstName":"Dan",              "lastName":"Craig",
+    "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"]},
+  {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
+    "username":"ed",     "password":"ed",      "roles": ["student"]		},
+  {"_id":789, "firstName":"Bolun", "lastName":"Hu", "username":"bolun", "password":"bolun", "roles":["student"], "email":"bolun@bolun.com",
+    "type":"student", "field":"N/A", "location": "UW"},
+  {"_id":890, "firstName":"Aaron", "lastName":"Gordon", "username":"aaron", "password":"aaron", "roles":["tutor"],
+    "type":"tutor", "field":"Computer Science", "location": "SLU", "price":17.00}
+]

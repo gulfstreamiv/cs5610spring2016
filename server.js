@@ -21,7 +21,7 @@ app.use(express.static(__dirname + '/public'));
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
-var connectionString = 'mongodb://localhost/FormBuilderApp';
+var connectionString = 'mongodb://localhost/cs5610spring2016';
 var mongoose = require('mongoose');
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
