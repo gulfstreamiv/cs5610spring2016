@@ -42,7 +42,7 @@
             var deferred = $q.defer();
             $http.delete('/api/assignment/form/'+formId+'/field/'+fieldId).then(function(retVal){
                 deferred.resolve(retVal);
-            });
+            }, function(reason){$q.reject(reason)});
             return deferred.promise;
         }
 
@@ -50,7 +50,7 @@
             var deferred = $q.defer();
             $http.put('/api/assignment/form/'+formId+'/field/'+fieldId, field).then(function(retVal){
                 deferred.resolve(retVal);
-            });
+            }, function(reason){$q.reject(reason)});
             return deferred.promise;
         }
     }
