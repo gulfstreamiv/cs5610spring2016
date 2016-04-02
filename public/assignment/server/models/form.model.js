@@ -209,10 +209,20 @@ module.exports = function(app, mongoose, db) {
                 return element._id == fieldId;
             });
             retForm.fields.splice(fieldIndex, 1);
-            retForm.save(function(err, retVal){
+            //var toUpdate = {};
+            //for(var attr in retForm){
+            //    toUpdate[attr] = retForm[attr];
+            //}
+            var temp = retForm._id;
+            delete retForm._id;
+            formModel.update({_id:temp}, retForm, function(err, retVal){
                 if(err) deferred.reject(err);
                 deferred.resolve(retForm.fields);
             });
+            //retForm.save(function(err, retVal){
+            //    if(err) deferred.reject(err);
+            //    deferred.resolve(retForm.fields);
+            //});
         });
         return deferred.promise;
     }
@@ -255,10 +265,16 @@ module.exports = function(app, mongoose, db) {
             for(var attribute in field){
                 retForm.fields[fieldIndex][attribute] = field[attribute];
             }
-            retForm.save(function(err, retVal){
+            var temp = retForm._id;
+            delete retForm._id;
+            formModel.update({_id:temp}, retForm, function(retVal){
                 if(err) deferred.reject(err);
                 deferred.resolve(retForm.fields);
             });
+            //retForm.save(function(err, retVal){
+            //    if(err) deferred.reject(err);
+            //    deferred.resolve(retForm.fields);
+            //});
         });
         return deferred.promise;
     }
