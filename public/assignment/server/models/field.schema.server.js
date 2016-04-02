@@ -3,7 +3,7 @@ module.exports = function(mongoose){
     var Schema = mongoose.Schema;
     var fieldSchema = new Schema(
         {
-            id : String,
+            _id : String,
             label : String,
             type: {
                 type: String,

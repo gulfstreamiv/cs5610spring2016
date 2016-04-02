@@ -67,7 +67,7 @@
         };
 
         thisCtrl.removeField = function(field){
-            FieldService.deleteFieldFromForm(formId, field.id).then(function(retVal){
+            FieldService.deleteFieldFromForm(formId, field._id).then(function(retVal){
                 thisCtrl.fields = retVal.data;
             })
         };
