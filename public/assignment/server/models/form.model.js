@@ -187,7 +187,7 @@ module.exports = function(app, mongoose, db) {
         var condition = {formId : formId};
         formModel.findOne(condition, function(err, retVal){
             if(err) deferred.reject(err);
-            retVal.findOne({_id : fieldId}, function(err, field){
+            retVal.findOne({id : fieldId}, function(err, field){
                 deferred.resolve(field);
             });
         });
@@ -206,7 +206,7 @@ module.exports = function(app, mongoose, db) {
         formModel.findOne(condition, function(err, retForm){
             if(err) deferred.reject(err);
             var fieldIndex = retForm.fields.findIndex(function(element, index, array){
-                return element._id == fieldId;
+                return element.id == fieldId;
             });
             retForm.fields.splice(fieldIndex, 1);
             //var toUpdate = {};
@@ -228,7 +228,7 @@ module.exports = function(app, mongoose, db) {
     }
 
     function CreateField(formId, field){
-        field._id = uuid.v4();
+        field.id = uuid.v4();
         //var form = FindById(formId);
         //form.fields.push(field);
         //return form.fields;
@@ -260,7 +260,7 @@ module.exports = function(app, mongoose, db) {
         formModel.findOne(condition, function(err, retForm){
             if(err) deferred.reject(err);
             var fieldIndex = retForm.fields.findIndex(function(element, index, array){
-                return element._id == fieldId;
+                return element.id == fieldId;
             });
             for(var attribute in field){
                 retForm.fields[fieldIndex][attribute] = field[attribute];
