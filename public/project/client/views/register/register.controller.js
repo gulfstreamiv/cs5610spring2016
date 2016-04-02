@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("RegisterController", RegisterController);
+    angular.module("TutorApp").controller("RegisterController", RegisterController);
 
     function RegisterController(UserService, $rootScope, $scope, $location){
         $scope.user = {};
@@ -22,6 +22,7 @@
 
         $scope.register = function() {
             var newUser = {
+                _id : new Date().getTime(),
                 username : $scope.user.username,
                 password : $scope.user.password,
                 email : $scope.user.email,
@@ -32,9 +33,11 @@
                 price : $scope.price
             };
 
-            UserService.createUser(newUser, function (retVal){
-                $rootScope.user = retVal;
-                console.log(newUser);
+            UserService.createUser(newUser).then(function (retVal){
+                UserService.findById(newUser._id).then(function(retVal){
+                    $rootScope.user = retVal.data;
+                });
+                console.log(retVal.data);
                 $location.path('profile');
             });
         }

@@ -42,7 +42,7 @@ module.exports = function(app, mongoose, db) {
         //userArray.push(user);
         //return userArray;
         var deferred = q.defer();
-        if(!toInsert._id) toInsert._id = uuid.v4();
+        if(!toInsert._id) toInsert._id = new Date().getTime();
         var formatted = new userModel(toInsert);
         userModel.create(formatted, function(err, retVal){
             userModel.find(function(err, retVal){
@@ -83,6 +83,7 @@ module.exports = function(app, mongoose, db) {
         var deferred = q.defer();
 
         userModel.findById(id, function(err, retVal){
+            if(err) deferred.reject(err);
             deferred.resolve(retVal);
         });
         return deferred.promise;
@@ -185,6 +186,7 @@ module.exports = function(app, mongoose, db) {
         var condition = {type:"tutor", field:field, location:location};
 
         userModel.find(condition, function(err, retVal){
+            console.log(retVal);
             deferred.resolve(retVal);
         });
 

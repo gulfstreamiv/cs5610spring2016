@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("StudentHomeController", StudentHomeController);
+    angular.module("TutorApp").controller("StudentHomeController", StudentHomeController);
 
     function StudentHomeController($rootScope, $scope, $location){
         $scope.user = $rootScope.user;

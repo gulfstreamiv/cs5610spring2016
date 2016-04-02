@@ -44,14 +44,17 @@ module.exports = function(app, model) {
     app.get('/api/project/user/:id', function(req, res){
         var userId = req.params.id;
         model.FindById(userId).then(function(retVal) {
+            //console.log("found user:" + retVal.username);
             res.json(retVal);
         });
     });
 
-    app.get('/api/project/tutor', function(req, res){
-        var location = req.query.location;
-        var field = req.query.field;
-        model.FindByLocationField(location, field).then(function(retVal) {
+    app.get('/api/project/tutor/:field/:location', function(req, res){
+        console.log("server side find by field location!");
+        var location = req.params.location;
+        var field = req.params.field;
+        console.log("location: " + location + "field: " + field);
+        model.FindByLocationField(field, location).then(function(retVal) {
             res.json(retVal);
         });
     });

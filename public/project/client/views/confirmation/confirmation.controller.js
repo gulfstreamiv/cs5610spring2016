@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("ConfirmationController", ConfirmationController);
+    angular.module("TutorApp").controller("ConfirmationController", ConfirmationController);
 
     function ConfirmationController($scope, $location, $routeParams, UserService, ReservationService){
         var sid = $routeParams.sid;
@@ -13,18 +13,18 @@
         $scope.time = time;
         $scope.location = location;
         $scope.field = field;
-        UserService.findById(tid, function(retVal){
-            $scope.tutorFirstName = retVal.firstName;
-            $scope.tutorLastName = retVal.lastName;
+        UserService.findById(tid).then(function(retVal){
+            $scope.tutorFirstName = retVal.data.firstName;
+            $scope.tutorLastName = retVal.data.lastName;
         });
 
-        UserService.findById(tid, function(retVal){
-            $scope.price = Math.round(retVal.price * duration / 60);
+        UserService.findById(tid).then(function(retVal){
+            $scope.price = Math.round(retVal.data.price * duration / 60);
         });
 
         $scope.confirm = function(){
-            ReservationService.createReservation(sid, tid, field, time, location, duration, $scope.price, function(retVal){
-                console.log(retVal);
+            ReservationService.createReservation(sid, tid, field, time, location, duration, $scope.price).then(function(retVal){
+                console.log(retVal.data);
             });
             $location.path('studenthome');
         }

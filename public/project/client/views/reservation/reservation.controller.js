@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("ReservationController", ReservationController);
+    angular.module("TutorApp").controller("ReservationController", ReservationController);
 
     function ReservationController($rootScope, $scope, $location){
         $scope.user = $rootScope.user;

@@ -16,6 +16,13 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+
+var cookieParser = require('cookie-parser');
+var localStrategy = require('passport-local').Strategy;
+var passport = require('passport');
+var session = require('express-session');
+
+
 app.use(express.static(__dirname + '/public'));
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
@@ -48,7 +55,7 @@ mongoose.connection.on('disconnected', function () {
 
 require("./public/assignment/server/app.js")(app, mongoose, db);
 //require("./public/project/compilebox/API/app.js")(app);
-//require("./public/project/server/app.js")(app, mongoose);
+require("./public/project/server/app.js")(app, mongoose);
 
 app.get("/", function(req, res) {
     res.sendfile('index.html', {root: __dirname });

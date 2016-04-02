@@ -1,6 +1,6 @@
 (function (){
     "use strict";
-    angular.module("FormBuilderApp").factory("FormService", FormService);
+    angular.module("TutorApp").factory("FormService", FormService);
 
     function FormService() {
         var formArray = [

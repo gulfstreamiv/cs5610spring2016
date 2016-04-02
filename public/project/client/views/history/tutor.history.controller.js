@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("TutorHistoryController", TutorHistoryController);
+    angular.module("TutorApp").controller("TutorHistoryController", TutorHistoryController);
 
     function TutorHistoryController($rootScope, $scope, $routeParams, ReservationService, UserService){
         $scope.uid = $routeParams.uid;
@@ -41,32 +41,76 @@
             "16:00 " + tomorrow.toString().slice(0,10)
         ];
 
-        ReservationService.findAllReservationsForTutor($routeParams.uid, function (retVal) {
-            $scope.orderList = retVal;
+        //ReservationService.findAllReservationsForTutor($routeParams.uid, function (retVal) {
+        //    $scope.orderList = retVal;
+        //});
+
+        $scope.reservationCache = {};
+
+        ReservationService.findAllReservationsForTutor($scope.uid).then(function (retVal) {
+            //console.log("List of reservations for student Bolun: " + retVal.data[0].tutorId + " length is :" + retVal.data.length);
+            $scope.reservationCache[$scope.uid] = retVal.data;
+            //console.log("uid: " + $scope.uid + "has been memorized to reservation");
         });
 
-        $scope.getStudentName = function(sid) {
-            UserService.findById(sid, function(retVal){
-                //console.log(retVal.firstName + " " + retVal.lastName);
-                $scope.tempStudent = retVal;
-            });
-            return $scope.tempStudent.firstName + " " + $scope.tempStudent.lastName;
+        //$scope.getStudentName = function(sid) {
+        //    UserService.findById(sid).then(function(retVal){
+        //        //console.log(retVal.firstName + " " + retVal.lastName);
+        //        $scope.tempStudent = retVal.data;
+        //    });
+        //    return $scope.tempStudent.firstName + " " + $scope.tempStudent.lastName;
+        //};
+
+        $scope.studentCache = {};
+        UserService.findAllUsers().then(function(retVal){
+            //console.log(retVal.data.firstName + " " + retVal.data.lastName);
+            //tutorCache[tid] = retVal.data.firstName + " " + retVal.data.lastName;
+            //console.log("uid: " + tid + "has been memorized to tutorCache");
+            console.log(retVal.data);
+            for (var i = 0; i<retVal.data.length; i++){
+                //    if(temp == 'tutor'){
+                $scope.studentCache[retVal.data[i]._id] = retVal.data[i];
+                console.log("storing names " + retVal.data[i]);
+                //    }
+            }
+        });
+
+        $scope.getStudentName = function(sid){
+            if($scope.studentCache[sid]) {
+                console.log("fetching name");
+                return $scope.studentCache[sid].firstName + " " + $scope.studentCache[sid].lastName;
+            }
         };
 
         //edit reservation options
         $scope.editReservation = function(orderId){
-            var newOrder = {};
-            newOrder.time = fetchInt($scope.reservation.time);
-            newOrder.location = $scope.reservation.location;
-            newOrder.duration = fetchInt($scope.reservation.duration);
-            newOrder.price = Math.round(getTutorRateFromOrder(orderId) * fetchInt($scope.reservation.duration) / 60);
-            //console.log("updating order: " + orderId);
-            ReservationService.updateReservationById(orderId, newOrder, function(retVal){
-                //for(var i = 0 ; i< retVal.length; i++) console.log(retVal[i]);
-                ReservationService.findAllReservationsForTutor($routeParams.uid, function (retVal) {
-                    $scope.orderList = retVal;
+            $scope.newOrder = {};
+            $scope.newOrder.time = fetchInt($scope.reservation.time);
+            $scope.newOrder.location = $scope.reservation.location;
+            $scope.newOrder.duration = fetchInt($scope.reservation.duration);
+
+            ReservationService.findReservationById(orderId).then(function(retVal){
+                console.log("updated tid is " + retVal.data.tutorId);
+                //tid = retVal.data.tutorId;
+                //console.log("prepare to get new price for tutor " + tid);
+                UserService.findById(retVal.data.tutorId).then(function(retVal){
+                    console.log("updated price/hour is " + retVal.data.price);
+                    console.log("updated reservation duration is " + $scope.newOrder.duration);
+                    $scope.rate = retVal.data.price;
+                    $scope.newOrder.price = Math.round($scope.rate * $scope.newOrder.duration / 60);
+                    console.log("new order price is : " + $scope.newOrder.price);
+                    ReservationService.updateReservationById(orderId, $scope.newOrder).then(function(retVal){
+                        //for(var i = 0 ; i< retVal.length; i++) console.log(retVal[i]);
+                        ReservationService.findAllReservationsForTutor($routeParams.uid).then(function (retVal) {
+                            $scope.reservationCache[$scope.uid] = retVal.data;
+                        });
+                    });
                 });
             });
+
+            //console.log("updating order: " + orderId);
+            //while(!newOrder.price) {}
+            //console.log("new order price is : " + $scope.newOrder.price);
             $scope.reservation = {};
             $(".modal-backdrop").hide();
             $('body').removeClass('modal-open');
@@ -85,25 +129,24 @@
             }
         };
 
-        function getTutorRateFromOrder(orderId){
-            var tid;
-            var rate;
-            console.log("initiate getTutorRate! Orderid is " + orderId);
-            ReservationService.findReservationById(orderId, function(retVal){
-                console.log("updated tid is " + retVal.tutorId);
-                tid = retVal.tutorId;
-            });
-            UserService.findById(tid, function(retVal){
-                console.log("updated price/hour is " + retVal.price);
-                rate = retVal.price;
-            });
-            return rate;
-        }
+        // function getTutorRateFromOrder(orderId){
+        //    var tid;
+        //    console.log("initiate getTutorRate! Orderid is " + orderId);
+        //    ReservationService.findReservationById(orderId).then(function(retVal){
+        //        console.log("updated tid is " + retVal.data.tutorId);
+        //        tid = retVal.data.tutorId;
+        //        console.log("prepare to get new price for tutor " + tid);
+        //        UserService.findById(tid).then(function(retVal){
+        //            console.log("updated price/hour is " + retVal.data.price);
+        //            $scope.rate = retVal.data.price;
+        //        });
+        //    });
+        //}
 
         //delete reservation
         $scope.deleteOrder = function(orderId){
-            ReservationService.deleteReservationById(orderId, function(retVal){
-                $scope.orderList = retVal;
+            ReservationService.deleteReservationById(orderId).then(function(retVal){
+                $scope.reservationCache[$scope.uid] = retVal.data;
             });
         }
 

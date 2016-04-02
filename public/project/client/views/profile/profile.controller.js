@@ -1,6 +1,6 @@
 (function(){
     "use strict";
-    angular.module("FormBuilderApp").controller("ProfileController", ProfileController);
+    angular.module("TutorApp").controller("ProfileController", ProfileController);
 
     function ProfileController($rootScope, $scope, $location, UserService) {
 
@@ -24,7 +24,7 @@
 
         $scope.update = function() {
             console.log("updating user...");
-            UserService.updateUser($scope.user._id, $scope.user, function(updatedUser){
+            UserService.updateUser($scope.user._id, $scope.user).then(function(updatedUser){
                 //Do nothing
                 console.log(JSON.stringify($scope.user));
                 $location.path("home")

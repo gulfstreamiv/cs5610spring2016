@@ -47,6 +47,11 @@
             $scope.form.title = $scope.selectedForm.title;
         };
 
+        $scope.gotoField = function(){
+            if($scope.selectedForm) $location.path('user/'+$scope.currentUser._id+'/form/'+$scope.selectedForm._id+'/fields');
+            else alert("Please first select a form using the Pencil icon");
+        };
+
         function getForms(){
             FormService.findAllFormsForUser(currentUser._id).then(function(retVal){
                 $scope.forms = retVal.data;

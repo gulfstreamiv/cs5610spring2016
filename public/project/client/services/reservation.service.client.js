@@ -1,8 +1,8 @@
 (function (){
     "use strict";
-    angular.module("FormBuilderApp").factory("ReservationService", ReservationService);
+    angular.module("TutorApp").factory("ReservationService", ReservationService);
 
-    function ReservationService() {
+    function ReservationService($http, $q) {
 
         var reservationArray = [
             {"_id": "fj1aohr83", "studentId": 789, "tutorId": 890, "field":"Computer Science", "time" : 14, "location":"SLU", "duration": 45, "price":14.00},
@@ -20,7 +20,7 @@
 
         return ServiceType;
 
-        function createReservation(sid, tid, field, time, location, duration, price, callback){
+        function createReservation(sid, tid, field, time, location, duration, price){
             var reservation = {};
             reservation._id = new Date().getTime();
             reservation.studentId = sid;
@@ -30,57 +30,90 @@
             reservation.location = location;
             reservation.duration = duration;
             reservation.price = price;
-            reservationArray.push(reservation);
-            callback(reservation);
+            //reservationArray.push(reservation);
+            //callback(reservation);
+            var deferred = $q.defer();
+            $http.post('/api/project/reservation', reservation).then(function(retVal){
+                deferred.resolve(retVal);
+            });
+            return deferred.promise;
         }
 
-        function findReservationById(rid, callback){
-            for(var i = 0; i<reservationArray.length; i++){
-                if(reservationArray[i]._id == rid){
-                    callback(reservationArray[i]);
-                }
-            }
+        function findReservationById(rid){
+            //for(var i = 0; i<reservationArray.length; i++){
+            //    if(reservationArray[i]._id == rid){
+            //        callback(reservationArray[i]);
+            //    }
+            //}
+            var deferred = $q.defer();
+            $http.get('/api/project/reservation/'+rid).then(function(retVal){
+                deferred.resolve(retVal);
+            });
+            return deferred.promise;
         }
 
-        function findAllReservationsForStudent(sid, callback){
-            var temp = [];
-            for(var i = 0; i<reservationArray.length; i++){
-                if(reservationArray[i].studentId == sid){
-                    temp.push(reservationArray[i]);
-                }
-            }
-            callback(temp);
+        function findAllReservationsForStudent(sid){
+            //var temp = [];
+            //for(var i = 0; i<reservationArray.length; i++){
+            //    if(reservationArray[i].studentId == sid){
+            //        temp.push(reservationArray[i]);
+            //    }
+            //}
+            //callback(temp);
+            console.log("called student history on Client side!"+" with sid= " + sid);
+            var deferred = $q.defer();
+            $http.get('/api/project/reservation/student/'+sid).then(function(retVal){
+                console.log("reservation client side return with " + retVal);
+                deferred.resolve(retVal);
+            });
+            return deferred.promise;
         }
 
-        function findAllReservationsForTutor(tid, callback){
-            var temp = [];
-            for(var i = 0; i<reservationArray.length; i++){
-                if(reservationArray[i].tutorId == tid){
-                    temp.push(reservationArray[i]);
-                }
-            }
-            callback(temp);
+        function findAllReservationsForTutor(tid){
+            //var temp = [];
+            //for(var i = 0; i<reservationArray.length; i++){
+            //    if(reservationArray[i].tutorId == tid){
+            //        temp.push(reservationArray[i]);
+            //    }
+            //}
+            //callback(temp);
+            var deferred = $q.defer();
+            $http.get('/api/project/reservation/tutor/'+tid).then(function(retVal){
+                deferred.resolve(retVal);
+            });
+            return deferred.promise;
         }
 
-        function deleteReservationById(rid, callback){
-            for(var i = 0; i < reservationArray.length; i++){
-                if(reservationArray[i]._id == rid){
-                    reservationArray.splice(i, 1);
-                }
-            }
-            callback(reservationArray);
+        function deleteReservationById(rid){
+            //for(var i = 0; i < reservationArray.length; i++){
+            //    if(reservationArray[i]._id == rid){
+            //        reservationArray.splice(i, 1);
+            //    }
+            //}
+            //callback(reservationArray);
+            var deferred = $q.defer();
+            $http.delete('/api/project/reservation/'+rid).then(function(retVal){
+                deferred.resolve(retVal);
+            });
+            return deferred.promise;
         }
 
-        function updateReservationById(rid, newOrder, callback) {
-            for(var i = 0; i<reservationArray.length; i++){
-                if(reservationArray[i]._id == rid){
-                    console.log("updating order: " + rid + "from service");
-                    for(var attribute in newOrder){
-                        reservationArray[i][attribute] = newOrder[attribute];
-                    }
-                    callback(reservationArray);
-                }
-            }
+        function updateReservationById(rid, newOrder) {
+            //for(var i = 0; i<reservationArray.length; i++){
+            //    if(reservationArray[i]._id == rid){
+            //        console.log("updating order: " + rid + "from service");
+            //        for(var attribute in newOrder){
+            //            reservationArray[i][attribute] = newOrder[attribute];
+            //        }
+            //        callback(reservationArray);
+            //    }
+            //}
+            var deferred = $q.defer();
+            $http.put('/api/project/reservation/'+rid, newOrder).then(function(retVal){
+                deferred.resolve(retVal);
+            });
+            console.log("succesfully updated reservation");
+            return deferred.promise;
         }
 
     }

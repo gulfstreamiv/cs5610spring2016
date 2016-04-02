@@ -19,6 +19,11 @@
             $rootScope.user = null;
             $rootScope.admin = null;
             $location.path('home');
+        };
+
+        $scope.getUserName = function(){
+            if($rootScope.user) return $rootScope.user.username;
+            else return "Username";
         }
     }
 })();

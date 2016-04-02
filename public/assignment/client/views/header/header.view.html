@@ -14,7 +14,7 @@
         <li ng-show="!currentUser()"><a href="#/register">Register</a></li>
         <li ng-show="!currentUser()"><a href="#/login">Login</a></li>
         <li ng-show="currentUser()" ng-click="logout()"><a href="#/home">Logout</a></li>
-        <li ng-show="currentUser()"><a href="#/profile">Username</a></li>
+        <li ng-show="currentUser()"><a href="#/profile">{{getUserName()}}</a></li>
         <li ng-show="currentAdmin()"><a href="#/admin">Admin</a></li>
       </ul>
     </div>

@@ -1,7 +1,7 @@
 (function(){
     "use strict";
     angular
-        .module("FormBuilderApp")
+        .module("TutorApp")
         .config(Configure);
 
     function Configure($routeProvider){

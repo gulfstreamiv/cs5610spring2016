@@ -1,6 +1,6 @@
 (function(){
     "use strict";
-    angular.module("FormBuilderApp").controller("SidebarController", SidebarController);
+    angular.module("TutorApp").controller("SidebarController", SidebarController);
 
     function SidebarController($rootScope, $scope, $location){
         $scope.currentUser = function(){

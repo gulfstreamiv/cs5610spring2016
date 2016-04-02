@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("HomeController", HomeController);
+    angular.module("TutorApp").controller("HomeController", HomeController);
 
     function HomeController($rootScope, $scope, $location){
         $scope.ifLoggedIn = function(){

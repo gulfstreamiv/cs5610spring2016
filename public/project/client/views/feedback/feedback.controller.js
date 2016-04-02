@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("FeedbackController", FeedBackController);
+    angular.module("TutorApp").controller("FeedbackController", FeedBackController);
 
     function FeedBackController($rootScope, $scope, $location, UserService){
         $scope.user = $rootScope.user;
@@ -23,8 +23,8 @@
             toInsert.feedback = $scope.feed.review;
             toInsert.rating = $scope.feed.rating;
             console.log("ready to add feedback!");
-            UserService.addFeedback(toInsert, function(retVal){
-                console.log(retVal);
+            UserService.addFeedback(toInsert).then(function(retVal){
+                console.log(retVal.data);
                 alert("Your feedback has been logged. Thank you for your time!");
                 if($scope.user.type.indexOf("student") != -1) $location.path('studenthome');
                 else if($scope.user.type.indexOf("tutor") != -1) $location.path('tutorhome');

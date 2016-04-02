@@ -164,6 +164,7 @@ module.exports = function(app, mongoose, db) {
         //var form = FindById(formId);
         //if(form) return form.fields;
         //else return null;
+        console.log("received formId is: " + formId);
         var deferred = q.defer();
         var condition = {_id : String(formId)};
         console.log(condition);

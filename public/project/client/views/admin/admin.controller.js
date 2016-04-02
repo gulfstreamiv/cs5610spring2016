@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    angular.module("FormBuilderApp").controller("AdminController", AdminController);
+    angular.module("TutorApp").controller("AdminController", AdminController);
 
     function AdminController($scope, $location){
 

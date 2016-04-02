@@ -31,7 +31,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="order in orderList">
+                            <tr ng-repeat="order in reservationCache[uid]">
                                 <td class="count"></td>
                                 <td>{{getTutorName(order.tutorId)}}</td>
                                 <td>{{order.field}}</td>

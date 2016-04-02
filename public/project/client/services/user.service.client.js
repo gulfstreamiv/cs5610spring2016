@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("FormBuilderApp").factory("UserService", UserService);
+    angular.module("TutorApp").factory("UserService", UserService);
 
         function  UserService ($http, $q) {
 
@@ -39,11 +39,12 @@
 
             return serviceType;
 
-            function findByNamePassword(username, password, callback) {
+            function findByNamePassword(username, password) {
                 //for (var i = 0; i < userArray.length; i++) {
                 //    if (userArray[i].username == username && userArray[i].password == password)
                 //        callback(userArray[i]);
                 //}
+                console.log("findbyNamePassword called!");
                 var deferred = $q.defer();
                 $http.get('/api/project/user?username='+username+'&password='+password).then(function(retVal){
                     deferred.resolve(retVal);
@@ -51,7 +52,7 @@
                 return deferred.promise;
             }
 
-            function findById(uid, callback){
+            function findById(uid){
                 //for(var i = 0; i<userArray.length; i++){
                 //    if(userArray[i]._id == uid){
                 //        callback(userArray[i]);
@@ -64,7 +65,7 @@
                 return deferred.promise;
             }
 
-            function findByLocationField(location, field, callback){
+            function findByLocationField(location, field){
                 console.log("finding tutors...");
                 //var temp = [];
                 //for(var i = 0; i<userArray.length; i++){
@@ -73,13 +74,13 @@
                 //}
                 //callback(temp);
                 var deferred = $q.defer();
-                $http.get('/api/project/tutor?field='+field+'&location='+location).then(function(retVal){
+                $http.get('/api/project/tutor/'+field+'/'+location).then(function(retVal){
                     deferred.resolve(retVal);
                 });
                 return deferred.promise;
             }
 
-            function findAll(callback) {
+            function findAll() {
                 //callback(userArray);
                 var deferred = $q.defer();
                 $http.get('/api/project/user').then(function(retVal){
@@ -88,8 +89,7 @@
                 return deferred.promise;
             }
 
-            function create(user, callback) {
-                user._id = new Date().getTime();
+            function create(user) {
                 //userArray.push(user);
                 //callback(user);
                 var deferred = $q.defer();
@@ -99,7 +99,7 @@
                 return deferred.promise;
             }
 
-            function deleteById(userId, callback) {
+            function deleteById(userId) {
                 //for (var i = 0; i < userArray.length; i++) {
                 //    if (userArray[i]._id == userId) {
                 //        userArray.splice(i, 1);
@@ -107,13 +107,13 @@
                 //}
                 //callback(userArray);
                 var deferred = $q.defer();
-                $http.delete('/api/assignment/user/'+userId).then(function(retVal){
+                $http.delete('/api/project/user/'+userId).then(function(retVal){
                     deferred.resolve(retVal);
                 });
                 return deferred.promise;
             }
 
-            function updateUser(userId, user, callback) {
+            function updateUser(userId, user) {
                 //for (var i = 0; i < userArray.length; i++) {
                 //    if (userArray[i]._id == userId) {
                 //        for(var attr in user){
@@ -123,7 +123,7 @@
                 //    }
                 //}
                 var deferred = $q.defer();
-                $http.put('/api/assignment/user/'+userId, user).then(function(retVal){
+                $http.put('/api/project/user/'+userId, user).then(function(retVal){
                     deferred.resolve(retVal);
                 });
                 return deferred.promise;
@@ -137,7 +137,7 @@
             //    }
             //}
 
-            function addFeedback(feedback, callback){
+            function addFeedback(feedback){
                 //feedback.date = new Date();
                 //feedbackArray.push(feedback);
                 //callback(feedback);

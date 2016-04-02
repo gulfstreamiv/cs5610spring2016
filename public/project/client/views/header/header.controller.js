@@ -1,7 +1,7 @@
 (function(){
     "use strict";
     angular
-        .module("FormBuilderApp")
+        .module("TutorApp")
         .controller("HeaderController", HeaderController);
 
     function HeaderController($rootScope, $scope, $location){
