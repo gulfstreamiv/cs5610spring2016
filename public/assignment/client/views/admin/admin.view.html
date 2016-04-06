@@ -1,57 +1,84 @@
 
-  <h1 class="page-header">Admin</h1>
-  <h2 class="page-header">Users</h2>
+<h1 class="page-header">Admin</h1>
 
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <b>User Management</b>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-sort"></span> Username</th>
+                    <th>Password</th>
+                    <th><span class="glyphicon glyphicon-sort"></span> First Name</th>
+                    <th><span class="glyphicon glyphicon-sort"></span> Last Name</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th><span class="glyphicon glyphicon-sort"></span> Username</th>
-        <th><span class="glyphicon glyphicon-sort"></span> Password</th>
-        <th><span class="glyphicon glyphicon-sort"></span> Row</th>
-        <th><span class="glyphicon glyphicon-sort"></span> Action</th>
-      </tr>
-    </thead>
+                <tbody>
+                  <tr>
+                    <td><input type='text' ng-model="selectedUser.username" placeholder="Username"/></td>
+                    <td><input type='password' ng-model="selectedUser.password" placeholder="Password"/></td>
+                    <td><input type='text' ng-model="selectedUser.firstName" placeholder="First Name"/></td>
+                    <td><input type='text' ng-model="selectedUser.lastName" placeholder="Last Name"/></td>
+                    <td><input type='text' ng-model="selectedUser.roles" placeholder="role1, role2"/></td>
+                    <td>
+                      <a style="font-size: 2em;" class="glyphicon glyphicon-plus" ng-click="addUser()"></a>
+                      <a style="font-size: 2em;" class="glyphicon glyphicon-ok" ng-click="updateUser()"></a>
+                    </td>
 
-    <tbody>
-      <tr>
-        <td><input type='text' placeholder="Username"/></td>
-        <td><input type='text' placeholder="Password"/></td>
-        <td><input type='text' placeholder="role1, role2"/></td>
-        <td>
-          <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
-          <span style="font-size: 2em;" class="glyphicon glyphicon-ok"></span>
-        </td>
+                  </tr>
 
-      </tr>
+                  <tr ng-repeat="user in users">
+                    <th scope="row">{{user.username}}</th>
+                    <td></td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.roles.toString()}}</td>
+                    <td>
+                      <a style="font-size: 2em;" class="glyphicon glyphicon-remove" ng-click="deleteUser(user)"></a>
+                      <a style="font-size: 2em;" class="glyphicon glyphicon-cog" ng-click="editUser(user)"></a>
+                    </td>
+                  </tr>
 
-      <tr>
-        <th scope="row">alice</th>
-        <td></td>
-        <td>student</td>
-        <td>
-          <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
-          <span style="font-size: 2em;" class="glyphicon glyphicon-pencil"></span>
-        </td>
+                  <!--<tr>-->
+                    <!--<th scope="row">bob</th>-->
+                    <!--<td></td>-->
+                    <!--<td>Bob</td>-->
+                    <!--<td>Adam</td>-->
+                    <!--<td>faculty | admin</td>-->
+                    <!--<td>-->
+                      <!--<a style="font-size: 2em;" class="glyphicon glyphicon-cog"></a>-->
+                      <!--<a style="font-size: 2em;" class="glyphicon glyphicon-pencil"></a>-->
+                    <!--</td>-->
+                  <!--</tr>-->
+                  <!---->
+                  <!--<tr>-->
+                    <!--<th scope="row">charlie</th>-->
+                    <!--<td></td>-->
+                    <!--<td>Charlie</td>-->
+                    <!--<td>Larry</td>-->
+                    <!--<td>admin</td>-->
+                    <!--<td>-->
+                      <!--<span style="font-size: 2em;" class="glyphicon glyphicon-cog"></span>-->
+                      <!--<span style="font-size: 2em;" class="glyphicon glyphicon-pencil"></span>-->
+                    <!--</td>-->
+                  <!--</tr>-->
 
-      </tr>
-      <tr>
-        <th scope="row">bob</th>
-        <td></td>
-        <td>faculty | admin</td>
-        <td>
-          <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
-          <span style="font-size: 2em;" class="glyphicon glyphicon-pencil"></span>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">charlie</th>
-        <td></td>
-        <td></td>
-        <td>
-          <span style="font-size: 2em;" class="glyphicon glyphicon-plus"></span>
-          <span style="font-size: 2em;" class="glyphicon glyphicon-pencil"></span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

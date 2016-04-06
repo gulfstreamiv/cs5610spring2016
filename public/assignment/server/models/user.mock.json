@@ -1,12 +1,12 @@
 [
   {	"_id":"123", "username":"alice", "firstName":"Alice", "lastName":"Wonderland",
-      "password":"alice",   "emails": ["student@student.com"], "phones":["123123123"]},
+      "password":"alice",   "emails": ["student@student.com"], "phones":["123123123"], "roles":["student"]},
   {	"_id":"234", "username":"bob", "firstName":"Bob",              "lastName":"Hope",
-       "password":"bob",     "emails": ["bob@bob.com"], "phones":["123456"]},
+       "password":"bob",     "emails": ["bob@bob.com"], "phones":["123456"], "roles" : ["faculty"]},
   {	"_id":"345", "firstName":"Charlie",          "lastName":"Brown", "username":"charlie",
-    "password":"charlie", "emails": ["faculty@2.com"], "phones":["23124324"]	},
+    "password":"charlie", "emails": ["faculty@2.com"], "phones":["23124324"], "roles":["faculty", "admin"]},
   {	"_id":"456", "username":"dan", "firstName":"Dan",              "lastName":"Craig",
-        "password":"dan",     "emails": ["faculty@dsad.com", "admin@dsadsa.com"], "phones":["21324"]},
+        "password":"dan",     "emails": ["faculty@dsad.com", "admin@dsadsa.com"], "phones":["21324"], "roles":["admin", "faculty"]},
   {	"_id":"567", "username":"ed", "firstName":"Edward",           "lastName":"Norton",
-         "password":"ed",      "roles": ["student@dsada.com"],	"phones":["214900435","954365"]	}
+         "password":"ed",      "emails": ["student@dsada.com"],	"phones":["214900435","954365"], "roles":["student"]}
 ]

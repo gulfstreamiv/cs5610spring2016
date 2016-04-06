@@ -12,6 +12,7 @@ app.listen(port, ipaddress);
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -38,6 +39,15 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_APP_NAME;
 }
 var db = mongoose.connect(connectionString);
+
+//Passport.js
+console.log("secret");
+console.log(process.env.PASSPORT_SECRET);
+app.use(multer());
+app.use(session({ secret: 'secret' }));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose.connection.on('connected', function() {
     console.log("Connected to database")
