@@ -62,7 +62,7 @@ module.exports = function(app, model) {
     });
 
     app.get('/api/assignment/admin/user', auth, function(req, res){
-        //console.log("Receive GET request!");
+        console.log("Receive GET request!");
 
         var username = req.query.username;
         var password = req.query.password;
@@ -285,9 +285,11 @@ module.exports = function(app, model) {
     }
 
     function isAdmin(user) {
-        if(user.roles.indexOf("admin") > 0) {
+        if(user.roles.indexOf("admin") != -1) {
+            //console.log("user is admin!");
             return true
         }
+        //console.log("user is not admin!");
         return false;
     }
 
