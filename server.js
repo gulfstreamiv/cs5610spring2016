@@ -9,7 +9,7 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 app.listen(port, ipaddress);
 */
-
+process.env.SESSION_SECRET = process.env.SESSION_SECRET || 'demo-secret';
 var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
@@ -22,7 +22,6 @@ var cookieParser = require('cookie-parser');
 var localStrategy = require('passport-local').Strategy;
 var passport = require('passport');
 var session = require('express-session');
-
 
 app.use(express.static(__dirname + '/public'));
 
@@ -41,10 +40,10 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 var db = mongoose.connect(connectionString);
 
 //Passport.js
-console.log("secret");
-console.log(process.env.PASSPORT_SECRET);
+console.log("session secret is: ");
+console.log(process.env.SESSION_SECRET);
 app.use(multer());
-app.use(session({ secret: 'secret' }));
+app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
