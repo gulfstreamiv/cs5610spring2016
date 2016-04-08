@@ -36,12 +36,14 @@
                         function(response) {
                             var users = response.data;
                             if(users != null) {
-                                for (var i = 0; i < retVal.data.length; i++) {
+                                for (var i = 0; i < response.data.length; i++) {
                                     if (response.data[i].username === $scope.user.username) {
                                         $rootScope.user = response.data[i];
+                                        UserService.login(newUser).then(function(retVal){
+                                            $location.url("/profile");
+                                        })
                                     }
                                 }
-                                $location.url("/profile");
                             }
                         },
                         function(err) {

@@ -220,15 +220,16 @@ module.exports = function(app, model) {
     function register(req, res) {
         var newUser = req.body;
         newUser.roles = ['student'];
-
+        console.log("registering student on server side... " + newUser.username);
         model
             .findUserByUsername(newUser.username)
             .then(
                 function(user){
+                    console.log("returned user search... " + user);
                     if(user) {
                         res.json(null);
                     } else {
-                        return model.createUser(newUser);
+                        return model.Create(newUser);
                     }
                 },
                 function(err){
