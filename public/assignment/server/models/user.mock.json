@@ -8,5 +8,7 @@
   {	"_id":"456", "username":"dan", "firstName":"Dan",              "lastName":"Craig",
         "password":"dan",     "emails": ["faculty@dsad.com", "admin@dsadsa.com"], "phones":["21324"], "roles":["admin", "faculty"]},
   {	"_id":"567", "username":"ed", "firstName":"Edward",           "lastName":"Norton",
-         "password":"ed",      "emails": ["student@dsada.com"],	"phones":["214900435","954365"], "roles":["student"]}
+         "password":"ed",      "emails": ["student@dsada.com"],	"phones":["214900435","954365"], "roles":["student"]},
+  {	"_id":"fjdsi89324", "username":"admin", "firstName":"admin",           "lastName":"admin",
+    "password":"admin",      "emails": ["admin@admin.com"],	"phones":["123456","654321"], "roles":["admin"]}
 ]

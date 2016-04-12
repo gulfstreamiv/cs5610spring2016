@@ -3,6 +3,8 @@ var userArray = require("./user.mock.json");
 var uuid = require("node-uuid");
 var q = require("q");
 
+var bcrypt = require("bcrypt-nodejs");
+
 module.exports = function(app, mongoose, db) {
 
     var userSchema = require("./user.schema.server.js")(mongoose);
@@ -29,6 +31,14 @@ module.exports = function(app, mongoose, db) {
 
     function Create(user){
         //console.log("Server side received:" + user);
+        if(user.password) {
+            console.log("hashing password for user " + user.username);
+            user.password = bcrypt.hashSync(user.password);
+            console.log("new password is: " + user.password);
+        }
+        else {
+            user.password = bcrypt.hashSync(user.username);
+        }
         var toInsert = {};
         for(var attribute in user){
             toInsert[attribute] = user[attribute];
@@ -74,8 +84,14 @@ module.exports = function(app, mongoose, db) {
     }
 
     function Update(id, user){
-        //delete user._id;
         var condition = {_id : id};
+        //check if need to update password
+        userModel.findOne(condition, function(err, retVal) {
+            if(user.password == retVal.password)
+                delete user.password;
+            else
+                user.password = bcrypt.hashSync(user.password);
+        });
         var deferred = q.defer();
         userModel.findOne(condition, function(err, retVal){
             if(err) deferred.reject(err);
@@ -143,10 +159,16 @@ module.exports = function(app, mongoose, db) {
 
     function findUserByCredentials(username, password){
         var deferred = q.defer();
-        var condition = {username:username, password:password};
+        //var hashedPassword = bcrypt.hashSync(password);
+        console.log("validating user " + username);
+        //console.log("hashed password is " + hashedPassword);
+        var condition = {username:username};
 
         userModel.findOne(condition, function(err, retVal){
-            deferred.resolve(retVal);
+            if(bcrypt.compareSync(password, retVal.password))
+                deferred.resolve(retVal);
+            else
+                deferred.resolve(null);
         });
 
         return deferred.promise;

@@ -1,6 +1,7 @@
 "use strict";
 var LocalStrategy    = require('passport-local').Strategy;
 var passport         = require('passport');
+var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(app, model) {
     //var userModel = require("../../models/user/user.model.server.js")();
