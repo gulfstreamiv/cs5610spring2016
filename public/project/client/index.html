@@ -64,19 +64,19 @@
     <script src="views/forms/forms.controller.js"></script>
     <script src="views/main/main.controller.js"></script>
     <script src="views/selection/selection.controller.js"></script>
-    <script src="views/feedback/feedback.view.html"></script>
+    <!--<script src="views/feedback/feedback.view.html"></script>-->
     <script src="views/feedback/feedback.controller.js"></script>
+    <script src="views/admin/userFeedback.controller.js"></script>
     <script src="services/user.service.client.js"></script>
     <script src="services/forms.service.client.js"></script>
     <script src="services/reservation.service.client.js"></script>
+    <script src="views/admin/reservationMgmt.controller.js"></script>
 
     <script src="views/history/student.history.controller.js"></script>
     <script src="views/history/tutor.history.controller.js"></script>
 
-    <!-- GoogleMap API -->
-    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&sensor=false&libraries=geometry'></script>
-    <script src="views/reservation/reservation.location.js"></script>
-    <script src="views/reservation/map.js"></script>
+    <!--<script src="views/home/admin.home.view.html"></script>-->
+    <script src="views/home/admin.home.controller.js"></script>
 
     <!-- bxSlider Javascript file -->
     <script src="js/jquery.bxslider.min.js"></script>
@@ -101,7 +101,7 @@
     </nav>
 
 
-    <div ng-view></div>
+    <div ng-view class=" "></div>
     <!-- /#page-wrapper -->
 
 </div>
@@ -118,6 +118,13 @@
 <!-- Custom Theme JavaScript -->
 <script src="dist/js/sb-admin-2.js"></script>
 
+
+<!-- GoogleMap API -->
+<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAtQHzIbUDbPIl-C3IXiIjYzBeTz1PdHcQ&v=3.exp&signed_in=true&libraries=geometry'></script>
+<script src="views/reservation/reservation.location.js"></script>
+<script src="views/reservation/map.js"></script>
+
 </body>
 
 </html>
+

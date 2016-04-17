@@ -3,7 +3,7 @@ var LocalStrategy    = require('passport-local').Strategy;
 var passport         = require('passport');
 var bcrypt = require("bcrypt-nodejs");
 
-module.exports = function(app, model) {
+module.exports = function(app, model, modelProject) {
     //var userModel = require("../../models/user/user.model.server.js")();
 
     var auth = authenticated;
@@ -274,16 +274,29 @@ module.exports = function(app, model) {
     }
 
     function deserializeUser(user, done) {
-        model
-            .FindById(user._id)
-            .then(
-                function(user){
-                    done(null, user);
-                },
-                function(err){
-                    done(err, null);
-                }
-            );
+        if(!user.location) {
+            model
+                .FindById(user._id)
+                .then(
+                    function (user) {
+                        done(null, user);
+                    },
+                    function (err) {
+                        done(err, null);
+                    }
+                );
+        }
+        else{
+            modelProject.FindById(user._id)
+                .then(
+                    function (user) {
+                        done(null, user);
+                    },
+                    function (err) {
+                        done(err, null);
+                    }
+                );
+        }
     }
 
     function isAdmin(user) {

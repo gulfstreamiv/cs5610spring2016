@@ -4,7 +4,7 @@ module.exports = function(mongoose){
     var feedbackSchema = new Schema(
         {
             _id : Number,
-            user_id : String,
+            user_id : Number,
             feedback : String,
             rating : Number,
             date : Date

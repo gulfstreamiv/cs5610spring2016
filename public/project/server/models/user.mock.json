@@ -1,8 +1,12 @@
 [
   {	"_id":123, "firstName":"Alice", "lastName":"Wonderland", "username":"alice", "password":"alice", "roles": ["tutor"],
     "type":"tutor", "field":"Computer Science", "location": "SLU", "price":21.00},
+  {	"_id":124, "firstName":"Bob", "lastName":"Hope", "username":"bob", "password":"bob", "roles": ["student"],
+    "type":"student", "field":"N/A", "location": "Northgate"},
   {"_id":789, "firstName":"Bolun", "lastName":"Hu", "username":"bolun", "password":"bolun", "roles":["student"], "email":"bolun@bolun.com",
     "type":"student", "field":"N/A", "location": "UW"},
   {"_id":890, "firstName":"Aaron", "lastName":"Gordon", "username":"aaron", "password":"aaron", "roles":["tutor"],
-    "type":"tutor", "field":"Computer Science", "location": "NEU-Seattle", "price":17.00}
+    "type":"tutor", "field":"Computer Science", "location": "NEU-Seattle", "price":17.00},
+  {"_id":901, "firstName":"admin", "lastName":"admin", "username":"admin", "password":"admin", "roles":["admin"],
+    "type":"admin", "field":"N/A", "location": "N/A", "price":0.00}
 ]

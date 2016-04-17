@@ -19,10 +19,10 @@
         $scope.createFeedback = function(){
             var toInsert = {};
             toInsert._id = new Date().getTime();
-            toInsert.userId = $scope.user._id;
+            toInsert.user_id = $scope.user._id;
             toInsert.feedback = $scope.feed.review;
             toInsert.rating = $scope.feed.rating;
-            console.log("ready to add feedback!");
+            console.log("ready to add feedback! " + toInsert);
             UserService.addFeedback(toInsert).then(function(retVal){
                 console.log(retVal.data);
                 alert("Your feedback has been logged. Thank you for your time!");

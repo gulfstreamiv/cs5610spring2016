@@ -4,7 +4,7 @@
         .module("TutorApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($rootScope, $scope, $location){
+    function HeaderController($rootScope, $scope, $location, UserService){
 
         $scope.currentUser = function(){
             return $rootScope.user;
@@ -17,18 +17,31 @@
 
         $scope.currentStudent = function(){
             if(!$rootScope.user) return false;
-            return $rootScope.user.roles.indexOf("Student") != -1;
+            return $rootScope.user.roles.indexOf("student") != -1;
         };
 
         $scope.currentTutor = function(){
             if(!$rootScope.user) return false;
-            return $rootScope.user.roles.indexOf("Tutor") != -1;
+            return $rootScope.user.roles.indexOf("tutor") != -1;
         };
 
         $scope.logout = function(){
-            $rootScope.user = null;
-            $rootScope.admin = null;
-            $location.path('home');
+            UserService.logout().then(function(retVal){
+                $rootScope.user = null;
+                $rootScope.admin = null;
+                $location.path('home');
+            });
+        };
+
+        $scope.homePage = function(){
+            if(!$rootScope.user) $location.path('home');
+            else if($rootScope.user.roles.indexOf('student')!=-1) $location.path('studenthome');
+            else if($rootScope.user.roles.indexOf('tutor')!=-1) $location.path('tutorhome');
+            else $location.path('adminhome');
+        };
+
+        $scope.getId = function(){
+            if($rootScope.user) return $rootScope.user._id;
         }
     }
 })();

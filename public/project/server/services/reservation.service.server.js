@@ -2,6 +2,11 @@
 
 module.exports = function(app, model) {
 
+    app.get('/api/project/admin/reservation', function(req, res){
+        model.FindAll().then(function(retVal){
+            res.json(retVal);
+        });
+    });
 
     app.post('/api/project/reservation', function(req, res){
         console.log("RESERVATION CREATE request!! Server side!");

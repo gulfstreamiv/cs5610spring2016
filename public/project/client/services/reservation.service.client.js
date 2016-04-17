@@ -15,10 +15,19 @@
             findAllReservationsForTutor: findAllReservationsForTutor,
             deleteReservationById: deleteReservationById,
             updateReservationById: updateReservationById,
-            findReservationById : findReservationById
+            findReservationById : findReservationById,
+            findAllReservation : findAllReservation
         };
 
         return ServiceType;
+
+        function findAllReservation(){
+            var deferred = $q.defer();
+            $http.get('/api/project/admin/reservation').then(function(retVal){
+                deferred.resolve(retVal);
+            });
+            return deferred.promise;
+        }
 
         function createReservation(sid, tid, field, time, location, duration, price){
             var reservation = {};

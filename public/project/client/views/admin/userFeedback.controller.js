@@ -1,8 +1,8 @@
 (function() {
     "use strict";
-    angular.module("TutorApp").controller("UserMgmtController", UserMgmtController);
+    angular.module("TutorApp").controller("FeedbackMgmtController", FeedbackMgmtController);
 
-    function UserMgmtController($rootScope, $scope, $location, UserService){
+    function FeedbackMgmtController($rootScope, $scope, $location, UserService){
         $scope.sorted = false;
         $scope.sortUsernameAscending = false;
         $scope.sortUsernameDescending = false;
@@ -12,27 +12,27 @@
         $scope.sortLastNameDescending = false;
 
         function compareUsername(a,b) {
-            if (a.username < b.username)
+            if (a.user_id < b.user_id)
                 return -1;
-            else if (a.username > b.username)
+            else if (a.user_id > b.user_id)
                 return 1;
             else
                 return 0;
         }
 
         function compareFirstName(a,b) {
-            if (a.firstName < b.firstName)
+            if (a.date < b.date)
                 return -1;
-            else if (a.firstName > b.firstName)
+            else if (a.date > b.date)
                 return 1;
             else
                 return 0;
         }
 
         function compareLastName(a, b){
-            if (a.lastName < b.lastName)
+            if (a.rating < b.rating)
                 return -1;
-            else if (a.lastName > b.lastName)
+            else if (a.rating > b.rating)
                 return 1;
             else
                 return 0;
@@ -80,21 +80,21 @@
             //getAllUsers();
             if($scope.sorted == false){
                 $scope.sortUsernameAscending = true;
-                $scope.users.sort(compareUsername);
+                $scope.feedbacks.sort(compareUsername);
             }
             else if($scope.sortUsernameAscending == false && $scope.sortUsernameDescending == false){
                 $scope.sortUsernameAscending = true;
-                $scope.users.sort(compareUsername);
+                $scope.feedbacks.sort(compareUsername);
             }
             else if($scope.sortUsernameAscending == true && $scope.sortUsernameDescending == false){
                 $scope.sortUsernameDescending = true;
                 $scope.sortUsernameAscending = false;
-                $scope.users.sort(compareUsername).reverse();
+                $scope.feedbacks.sort(compareUsername).reverse();
             }
             else if($scope.sortUsernameAscending == false && $scope.sortUsernameDescending == true){
                 $scope.sortUsernameDescending = false;
                 $scope.sortUsernameAscending = true;
-                $scope.users.sort(compareUsername);
+                $scope.feedbacks.sort(compareUsername);
             }
             $scope.sorted = true;
             $scope.sortFirstNameAscending = false;
@@ -107,21 +107,21 @@
             //getAllUsers();
             if($scope.sorted == false){
                 $scope.sortFirstNameAscending = true;
-                $scope.users.sort(compareFirstName);
+                $scope.feedbacks.sort(compareFirstName);
             }
             else if($scope.sortFirstNameAscending == false && $scope.sortFirstNameDescending == false){
                 $scope.sortFirstNameAscending = true;
-                $scope.users.sort(compareFirstName);
+                $scope.feedbacks.sort(compareFirstName);
             }
             else if($scope.sortFirstNameAscending == true && $scope.sortFirstNameDescending == false){
                 $scope.sortFirstNameDescending = true;
                 $scope.sortFirstNameAscending = false;
-                $scope.users.sort(compareFirstName).reverse();
+                $scope.feedbacks.sort(compareFirstName).reverse();
             }
             else if($scope.sortFirstNameAscending == false && $scope.sortFirstNameDescending == true){
                 $scope.sortFirstNameDescending = false;
                 $scope.sortFirstNameAscending = true;
-                $scope.users.sort(compareFirstName);
+                $scope.feedbacks.sort(compareFirstName);
             }
             $scope.sorted = true;
             $scope.sortUsernameAscending = false;
@@ -134,21 +134,21 @@
             //getAllUsers();
             if($scope.sorted == false){
                 $scope.sortLastNameAscending = true;
-                $scope.users.sort(compareLastName);
+                $scope.feedbacks.sort(compareLastName);
             }
             else if($scope.sortLastNameAscending == false && $scope.sortLastNameDescending == false){
                 $scope.sortLastNameAscending = true;
-                $scope.users.sort(compareLastName);
+                $scope.feedbacks.sort(compareLastName);
             }
             else if($scope.sortLastNameAscending == true && $scope.sortLastNameDescending == false){
                 $scope.sortLastNameDescending = true;
                 $scope.sortLastNameAscending = false;
-                $scope.users.sort(compareLastName).reverse();
+                $scope.feedbacks.sort(compareLastName).reverse();
             }
             else if($scope.sortLastNameAscending == false && $scope.sortLastNameDescending == true){
                 $scope.sortLastNameDescending = false;
                 $scope.sortLastNameAscending = true;
-                $scope.users.sort(compareLastName);
+                $scope.feedbacks.sort(compareLastName);
             }
             $scope.sorted = true;
             $scope.sortUsernameAscending = false;
@@ -157,54 +157,55 @@
             $scope.sortFirstNameDescending = false;
         };
 
-        if($rootScope.user) getAllUsers();
+        if($rootScope.user) getAllFeedback();
 
-        $scope.selectedUser = {};
-        $scope.addUser = function(){
-            var newUser = {};
+        $scope.selectedFeedback = {};
+        $scope.addFeedback = function(){
+            var newFeedback = {};
             //newUser.roles = selectedUser.roles.split(",");
             //delete selectedUser.roles;
-            for(var attr in $scope.selectedUser){
-                newUser[attr] = $scope.selectedUser[attr];
+            for(var attr in $scope.selectedFeedback){
+                newFeedback[attr] = $scope.selectedFeedback[attr];
             }
-            UserService.insertUser(newUser).then(function(retVal){
-                getAllUsers();
+            UserService.addFeedback(newFeedback).then(function(retVal){
+                getAllFeedback();
             });
-            $scope.selectedUser = {};
+            $scope.selectedFeedback = {};
         };
 
-        $scope.updateUser = function(){
-            var newUser = {};
-            var userId = $scope.selectedUser._id;
-            for(var attr in $scope.selectedUser){
-                newUser[attr] = $scope.selectedUser[attr];
+        $scope.updateFeedback = function(){
+            var newFeedback = {};
+            var feedbackId = $scope.selectedFeedback._id;
+            for(var attr in $scope.selectedFeedback){
+                newFeedback[attr] = $scope.selectedFeedback[attr];
             }
 
-            UserService.editUser(userId, newUser).then(function(retVal){
-                getAllUsers();
+            UserService.editFeedback(feedbackId, newFeedback).then(function(retVal){
+                getAllFeedback();
             });
-            $scope.selectedUser = {};
+            $scope.selectedFeedback = {};
         };
 
-        $scope.editUser = function(user){
-            for(var attr in user){
-                $scope.selectedUser[attr] = user[attr];
+        $scope.editFeedback = function(feedback){
+            for(var attr in feedback){
+                $scope.selectedFeedback[attr] = feedback[attr];
             }
         };
 
-        $scope.deleteUser = function(user){
-            var userId = user._id;
-            UserService.sudoDelete(userId).then(function(retVal){
-                getAllUsers();
+        $scope.deleteFeedback = function(feedback){
+            var feedbackId = feedback._id;
+            UserService.deleteFeedback(feedbackId).then(function(retVal){
+                getAllFeedback();
             });
         };
 
-        function getAllUsers() {
-            UserService.getAllUsers().then(function(retVal){
+        function getAllFeedback() {
+            UserService.getFeedback().then(function(retVal){
                 console.log(retVal.data);
-                $scope.users = retVal.data;
+                $scope.feedbacks = retVal.data;
             });
-            console.log($scope.users);
+            console.log($scope.feedbacks);
         }
+
     }
 })();

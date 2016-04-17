@@ -16,18 +16,15 @@ function locateStudent(replace) {
                     var url = 'student_subject.html?slat=' + coord.lat + '&slng=' + coord.lng;
                     location.replace(url);
                 }
-                else
-                    document.getElementById('divMap').innerHTML =
+                else {
+                    document.getElementById("divMap").innerHTML =
                         '<iframe src="views/reservation/map.html?slat=' + coord.lat + '&slng=' + coord.lng
-                        +'" frameBorder="0" width="100%" height="300px"></iframe>';
+                        + '" frameBorder="0" width="100%" height="300px"></iframe>';
+                }
             }
             else
             // FRONTEND: ugly alert window at the moment
                 alert(status)
         }
     );
-}
-
-function confirm() {
-    locateStudent(true);
 }

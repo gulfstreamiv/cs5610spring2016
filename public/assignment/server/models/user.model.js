@@ -165,7 +165,8 @@ module.exports = function(app, mongoose, db) {
         var condition = {username:username};
 
         userModel.findOne(condition, function(err, retVal){
-            if(bcrypt.compareSync(password, retVal.password))
+            if(!retVal) deferred.resolve(null);
+            else if(bcrypt.compareSync(password, retVal.password))
                 deferred.resolve(retVal);
             else
                 deferred.resolve(null);

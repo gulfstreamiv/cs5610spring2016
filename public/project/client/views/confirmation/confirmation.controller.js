@@ -26,6 +26,7 @@
             ReservationService.createReservation(sid, tid, field, time, location, duration, $scope.price).then(function(retVal){
                 console.log(retVal.data);
             });
+            alert("Your reservation has been confirmed. Thank you!")
             $location.path('studenthome');
         }
     }

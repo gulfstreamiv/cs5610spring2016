@@ -6,10 +6,10 @@ function init() {
 	// Student's latitude and longitude
 	var slat = location.href.match(/[?&]slat=([^&]*)/)[1];
 	var slng = location.href.match(/[?&]slng=([^&]*)/)[1];
-	
+
 	drawMap(slat, slng);
 	drawMarker(slat, slng, 'Student');
-	
+
 	// Display tutor if the location information is given
 	if(location.href.match(/[?&]lat=([^&]*)/) != null && location.href.match(/[?&]lng=([^&]*)/) != null) {
 		var lat = location.href.match(/[?&]lat=([^&]*)/)[1];
@@ -34,7 +34,7 @@ function drawMap(lat, lng) {
 // Place a Google Maps marker
 function drawMarker(lat, lng, titleVar) {
 	var latlng = new google.maps.LatLng(lat, lng);
-	
+
 	if(titleVar == 'Student')
 		var image = {
 			url: 'markerStudent.png',
@@ -49,7 +49,7 @@ function drawMarker(lat, lng, titleVar) {
 			origin: new google.maps.Point(0, 0),
 			anchor: new google.maps.Point(12, 15)
 		};
-	
+
 	var marker = new google.maps.Marker({
 		position: latlng,
 		map: map,

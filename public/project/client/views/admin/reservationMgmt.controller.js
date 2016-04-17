@@ -1,8 +1,8 @@
 (function() {
     "use strict";
-    angular.module("TutorApp").controller("UserMgmtController", UserMgmtController);
+    angular.module("TutorApp").controller("ReservationMgmtController", ReservationMgmtController);
 
-    function UserMgmtController($rootScope, $scope, $location, UserService){
+    function ReservationMgmtController($rootScope, $scope, $location, UserService, ReservationService){
         $scope.sorted = false;
         $scope.sortUsernameAscending = false;
         $scope.sortUsernameDescending = false;
@@ -12,27 +12,27 @@
         $scope.sortLastNameDescending = false;
 
         function compareUsername(a,b) {
-            if (a.username < b.username)
+            if (a.price < b.price)
                 return -1;
-            else if (a.username > b.username)
+            else if (a.price > b.price)
                 return 1;
             else
                 return 0;
         }
 
         function compareFirstName(a,b) {
-            if (a.firstName < b.firstName)
+            if (a.time < b.time)
                 return -1;
-            else if (a.firstName > b.firstName)
+            else if (a.time > b.time)
                 return 1;
             else
                 return 0;
         }
 
         function compareLastName(a, b){
-            if (a.lastName < b.lastName)
+            if (a.duration < b.duration)
                 return -1;
-            else if (a.lastName > b.lastName)
+            else if (a.duration > b.duration)
                 return 1;
             else
                 return 0;
@@ -71,8 +71,8 @@
         //$scope.refreshByUsername = function(){
         //    UserService.getAllUsers().then(function(retVal){
         //        sortByUsername(retVal.data);
-        //        $scope.users.sort(compareUsername).reverse();
-        //        console.log($scope.users);
+        //        $scope.reservations.sort(compareUsername).reverse();
+        //        console.log($scope.reservations);
         //    });
         //};
 
@@ -80,21 +80,21 @@
             //getAllUsers();
             if($scope.sorted == false){
                 $scope.sortUsernameAscending = true;
-                $scope.users.sort(compareUsername);
+                $scope.reservations.sort(compareUsername);
             }
             else if($scope.sortUsernameAscending == false && $scope.sortUsernameDescending == false){
                 $scope.sortUsernameAscending = true;
-                $scope.users.sort(compareUsername);
+                $scope.reservations.sort(compareUsername);
             }
             else if($scope.sortUsernameAscending == true && $scope.sortUsernameDescending == false){
                 $scope.sortUsernameDescending = true;
                 $scope.sortUsernameAscending = false;
-                $scope.users.sort(compareUsername).reverse();
+                $scope.reservations.sort(compareUsername).reverse();
             }
             else if($scope.sortUsernameAscending == false && $scope.sortUsernameDescending == true){
                 $scope.sortUsernameDescending = false;
                 $scope.sortUsernameAscending = true;
-                $scope.users.sort(compareUsername);
+                $scope.reservations.sort(compareUsername);
             }
             $scope.sorted = true;
             $scope.sortFirstNameAscending = false;
@@ -107,21 +107,21 @@
             //getAllUsers();
             if($scope.sorted == false){
                 $scope.sortFirstNameAscending = true;
-                $scope.users.sort(compareFirstName);
+                $scope.reservations.sort(compareFirstName);
             }
             else if($scope.sortFirstNameAscending == false && $scope.sortFirstNameDescending == false){
                 $scope.sortFirstNameAscending = true;
-                $scope.users.sort(compareFirstName);
+                $scope.reservations.sort(compareFirstName);
             }
             else if($scope.sortFirstNameAscending == true && $scope.sortFirstNameDescending == false){
                 $scope.sortFirstNameDescending = true;
                 $scope.sortFirstNameAscending = false;
-                $scope.users.sort(compareFirstName).reverse();
+                $scope.reservations.sort(compareFirstName).reverse();
             }
             else if($scope.sortFirstNameAscending == false && $scope.sortFirstNameDescending == true){
                 $scope.sortFirstNameDescending = false;
                 $scope.sortFirstNameAscending = true;
-                $scope.users.sort(compareFirstName);
+                $scope.reservations.sort(compareFirstName);
             }
             $scope.sorted = true;
             $scope.sortUsernameAscending = false;
@@ -134,21 +134,21 @@
             //getAllUsers();
             if($scope.sorted == false){
                 $scope.sortLastNameAscending = true;
-                $scope.users.sort(compareLastName);
+                $scope.reservations.sort(compareLastName);
             }
             else if($scope.sortLastNameAscending == false && $scope.sortLastNameDescending == false){
                 $scope.sortLastNameAscending = true;
-                $scope.users.sort(compareLastName);
+                $scope.reservations.sort(compareLastName);
             }
             else if($scope.sortLastNameAscending == true && $scope.sortLastNameDescending == false){
                 $scope.sortLastNameDescending = true;
                 $scope.sortLastNameAscending = false;
-                $scope.users.sort(compareLastName).reverse();
+                $scope.reservations.sort(compareLastName).reverse();
             }
             else if($scope.sortLastNameAscending == false && $scope.sortLastNameDescending == true){
                 $scope.sortLastNameDescending = false;
                 $scope.sortLastNameAscending = true;
-                $scope.users.sort(compareLastName);
+                $scope.reservations.sort(compareLastName);
             }
             $scope.sorted = true;
             $scope.sortUsernameAscending = false;
@@ -157,54 +157,55 @@
             $scope.sortFirstNameDescending = false;
         };
 
-        if($rootScope.user) getAllUsers();
+        if($rootScope.user) getAllReservations();
 
-        $scope.selectedUser = {};
-        $scope.addUser = function(){
-            var newUser = {};
+        $scope.selectedReservation = {};
+        $scope.addReservation = function(){
+            var newReservation = {};
             //newUser.roles = selectedUser.roles.split(",");
             //delete selectedUser.roles;
-            for(var attr in $scope.selectedUser){
-                newUser[attr] = $scope.selectedUser[attr];
+            for(var attr in $scope.selectedReservation){
+                newReservation[attr] = $scope.selectedReservation[attr];
             }
-            UserService.insertUser(newUser).then(function(retVal){
-                getAllUsers();
+            ReservationService.createReservation(newReservation.studentId, newReservation.tutorId, newReservation.field,
+            newReservation.time, newReservation.location, newReservation.duration, newReservation.price).then(function(retVal){
+                getAllReservations();
             });
-            $scope.selectedUser = {};
+            $scope.selectedReservation = {};
         };
 
-        $scope.updateUser = function(){
-            var newUser = {};
-            var userId = $scope.selectedUser._id;
-            for(var attr in $scope.selectedUser){
-                newUser[attr] = $scope.selectedUser[attr];
+        $scope.updateReservation = function(){
+            var newReservation = {};
+            var ReservationId = $scope.selectedReservation._id;
+            for(var attr in $scope.selectedReservation){
+                newReservation[attr] = $scope.selectedReservation[attr];
             }
 
-            UserService.editUser(userId, newUser).then(function(retVal){
-                getAllUsers();
+            ReservationService.updateReservationById(ReservationId, newReservation).then(function(retVal){
+                getAllReservations();
             });
-            $scope.selectedUser = {};
+            $scope.selectedReservation = {};
         };
 
-        $scope.editUser = function(user){
-            for(var attr in user){
-                $scope.selectedUser[attr] = user[attr];
+        $scope.editReservation = function(reservation){
+            for(var attr in reservation){
+                $scope.selectedReservation[attr] = reservation[attr];
             }
         };
 
-        $scope.deleteUser = function(user){
-            var userId = user._id;
-            UserService.sudoDelete(userId).then(function(retVal){
-                getAllUsers();
+        $scope.deleteReservation = function(reservation){
+            var reservationId = reservation._id;
+            ReservationService.deleteReservationById(reservationId).then(function(retVal){
+                getAllReservations();
             });
         };
 
-        function getAllUsers() {
-            UserService.getAllUsers().then(function(retVal){
+        function getAllReservations() {
+            ReservationService.findAllReservation().then(function(retVal){
                 console.log(retVal.data);
-                $scope.users = retVal.data;
+                $scope.reservations = retVal.data;
             });
-            console.log($scope.users);
+            console.log($scope.reservations);
         }
     }
 })();

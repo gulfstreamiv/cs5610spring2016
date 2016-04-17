@@ -1,12 +1,12 @@
-  <h1 class="page-header">Forms: Registration Form</h1>
+<h1 class="page-header">Forms: Registration Form</h1>
 
-  <ul class="nav nav-tabs">
-    <li><a href="#/forms">Forms</a></li>
-    <li class="active"><a href="">Fields</a></li>
-  </ul>
-  <br>
+<ul class="nav nav-tabs">
+  <li><a href="#/forms">Forms</a></li>
+  <li class="active"><a href="">Fields</a></li>
+</ul>
+<br>
 
- <div id="sortable" style="overflow: hidden; position:relative">
+<div id="sortable" style="overflow: hidden; position:relative">
   <form role="form" ng-repeat="field in model.fields">
 
     <!--<li ng-repeat="item in fieldArray" ng-bind="item.label"></li>-->
@@ -254,29 +254,29 @@
     </div>
 
   </form>
- </div>
-    <br>
-    <hr>
+</div>
+<br>
+<hr>
 
-    <form role="form">
-    <div class="form-group">
-      <label>Add New Field:</label><br>
-      <div style="float: left;">
-        <select name="newfield" style="width: 265px;" ng-model="model.fieldType">
-          <option value="singlelinetext">Single Line Text</option>
-          <option value="multilinetext">Multi-Line Text</option>
-          <option value="date">Date</option>
-          <option value="dropdown">Dropdown</option>
-          <option value="checkbox">Checkboxes</option>
-          <option value="radio">Radio Buttons</option>
-        </select>
-      </div>
-
-      <div style="margin-left: 418px;">
-        <span style="font-size: 2em; float:right; color:transparent" class="glyphicon glyphicon-alert"></span>
-        <span style="font-size: 2em; float:right; color:transparent" class="glyphicon glyphicon-alert"></span>
-        <a style="font-size: 2em; float:right;" class="glyphicon glyphicon-plus" ng-click="model.addField(model.fieldType)"></a>
-      </div>
+<form role="form">
+  <div class="form-group">
+    <label>Add New Field:</label><br>
+    <div style="float: left;">
+      <select name="newfield" style="width: 265px;" ng-model="model.fieldType">
+        <option value="singlelinetext">Single Line Text</option>
+        <option value="multilinetext">Multi-Line Text</option>
+        <option value="date">Date</option>
+        <option value="dropdown">Dropdown</option>
+        <option value="checkbox">Checkboxes</option>
+        <option value="radio">Radio Buttons</option>
+      </select>
     </div>
 
-  </form>
+    <div style="margin-left: 418px;">
+      <span style="font-size: 2em; float:right; color:transparent" class="glyphicon glyphicon-alert"></span>
+      <span style="font-size: 2em; float:right; color:transparent" class="glyphicon glyphicon-alert"></span>
+      <a style="font-size: 2em; float:right;" class="glyphicon glyphicon-plus" ng-click="model.addField(model.fieldType)"></a>
+    </div>
+  </div>
+
+</form>

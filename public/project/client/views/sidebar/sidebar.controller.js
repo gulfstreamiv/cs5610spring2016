@@ -25,7 +25,12 @@
         $scope.homePage = function(){
             if(!$rootScope.user) $location.path('home');
             else if($rootScope.user.roles.indexOf('student')!=-1) $location.path('studenthome');
-            else $location.path('tutorhome');
+            else if($rootScope.user.roles.indexOf('tutor')!=-1) $location.path('tutorhome');
+            else $location.path('adminhome');
+        };
+
+        $scope.getId = function(){
+            if($rootScope.user) return $rootScope.user._id;
         }
     }
 

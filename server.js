@@ -62,9 +62,16 @@ mongoose.connection.on('disconnected', function () {
     console.log('Mongoose default connection disconnected');
 });
 
-require("./public/assignment/server/app.js")(app, mongoose, db);
+//initialize project models outside in order to pass model into serialize/deserialize function located
+//in assignment model
+var reservationModelProject = require("./public/project/server/models/reservation.model.js")(app, mongoose, db);
+var userModelProject = require("./public/project/server/models/user.model.js")(app, mongoose, db);
+require("./public/project/server/services/reservation.service.server.js")(app, reservationModelProject);
+require("./public/project/server/services/user.service.server.js")(app, userModelProject);
+
+require("./public/assignment/server/app.js")(app, mongoose, db, userModelProject);
 //require("./public/project/compilebox/API/app.js")(app);
-require("./public/project/server/app.js")(app, mongoose);
+//require("./public/project/server/app.js")(app, mongoose);
 
 app.get("/", function(req, res) {
     res.sendfile('index.html', {root: __dirname });

@@ -11,7 +11,7 @@
             {label:"University of Washington, Seattle, WA", value:"UW"},
             {label:"South Lake Union, Seattle, WA", value:"SLU"},
             {label:"Northgate, Seattle, WA", value:"Northgate"},
-            {label:"Bellevue, WA", value:"Northgate"},
+            {label:"Bellevue, WA", value:"Bellevue"},
             {label:"Northeastern University, Seattle, WA", value:"NEU-Seattle"}
         ];
 
