@@ -147,7 +147,11 @@
         $scope.deleteOrder = function(orderId){
             if (confirm("Are you sure to delete this reservation?") == true) {
                 ReservationService.deleteReservationById(orderId).then(function(retVal){
-                    $scope.reservationCache[$scope.uid] = retVal.data;
+                    ReservationService.findAllReservationsForTutor($scope.uid).then(function (retVal) {
+                        //console.log("List of reservations for student Bolun: " + retVal.data[0].tutorId + " length is :" + retVal.data.length);
+                        $scope.reservationCache[$scope.uid] = retVal.data;
+                        //console.log("uid: " + $scope.uid + "has been memorized to reservation");
+                    });
                 });
             } else {
 

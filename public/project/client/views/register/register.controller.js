@@ -47,6 +47,10 @@
             if($scope.user.password != $scope.user.verifyPassword || !$scope.user.password || !$scope.user.verifyPassword)
             {
                 $scope.error = "Your passwords don't match";
+                alert("Your passwords don't match");
+            }
+            else if(!$scope.user.location){
+                alert("Please fill in all required fields");
             }
             else {
                 var newUser = {
@@ -58,10 +62,10 @@
                     type : $scope.user.type,
                     field : $scope.user.field,
                     location : $scope.user.location,
-                    price : $scope.price
+                    price : $scope.user.price
                 };
 
-                console.log("new user is : " + newUser);
+                //console.log("new user is : " + newUser.price);
                 UserService
                     .register(newUser)
                     .then(

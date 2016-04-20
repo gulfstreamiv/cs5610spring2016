@@ -162,6 +162,14 @@
         $scope.selectedUser = {};
         $scope.addUser = function(){
             var newUser = {};
+            newUser.location = "SLU";
+            if($scope.selectedUser.roles) {
+                newUser.type = $scope.selectedUser.roles;
+            }
+            else {
+                newUser.type = "student";
+                $scope.selectedUser.roles = ["student"];
+            }
             //newUser.roles = selectedUser.roles.split(",");
             //delete selectedUser.roles;
             for(var attr in $scope.selectedUser){

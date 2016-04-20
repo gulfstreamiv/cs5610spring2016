@@ -315,8 +315,8 @@ module.exports = function(app, model) {
 
     function register(req, res) {
         var newUser = req.body;
-        newUser.roles = ['student'];
-        console.log("registering student on server side... " + newUser.username);
+        //newUser.roles = ['student'];
+        console.log("registering student on server side... " + newUser.price + req.body.price);
         model
             .findUserByUsername(newUser.username)
             .then(
