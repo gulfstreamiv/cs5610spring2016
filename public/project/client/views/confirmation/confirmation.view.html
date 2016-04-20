@@ -26,7 +26,12 @@
 
                                     <tr>
                                         <th>Location</th>
-                                        <td colspan="4">{{location}}</td>
+                                        <td colspan="4">{{location}}, Seattle, WA</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Duration</th>
+                                        <td colspan="4">{{duration}} Minutes</td>
                                     </tr>
 
                                     <tr>
@@ -89,9 +94,6 @@
                                                     </div>
                                                     <div class="col-xs-3">
                                                         <select class="form-control" name="expiry-year">
-                                                            <option value="13">2013</option>
-                                                            <option value="14">2014</option>
-                                                            <option value="15">2015</option>
                                                             <option value="16" >2016</option>
                                                             <option value="17">2017</option>
                                                             <option value="18">2018</option>
@@ -113,7 +115,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-9">
-                                                <button id="bind" type="button" class="btn btn-primary">Pay Now</button>
+                                                <button id="bind" type="button" class="btn btn-primary" ng-click="pay()">Pay Now</button>
                                             </div>
                                         </div>
                                         <script>

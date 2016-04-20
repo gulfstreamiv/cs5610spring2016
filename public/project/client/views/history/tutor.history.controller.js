@@ -77,7 +77,7 @@
 
         $scope.getStudentName = function(sid){
             if($scope.studentCache[sid]) {
-                console.log("fetching name");
+                //console.log("fetching name");
                 return $scope.studentCache[sid].firstName + " " + $scope.studentCache[sid].lastName;
             }
         };
@@ -145,9 +145,19 @@
 
         //delete reservation
         $scope.deleteOrder = function(orderId){
-            ReservationService.deleteReservationById(orderId).then(function(retVal){
-                $scope.reservationCache[$scope.uid] = retVal.data;
-            });
+            if (confirm("Are you sure to delete this reservation?") == true) {
+                ReservationService.deleteReservationById(orderId).then(function(retVal){
+                    $scope.reservationCache[$scope.uid] = retVal.data;
+                });
+            } else {
+
+            }
+        };
+
+        $scope.clearFields = function() {
+            $scope.reservation.time = null;
+            $scope.reservation.duration = null;
+            $scope.reservation.location = null;
         }
 
     }

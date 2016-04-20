@@ -97,7 +97,7 @@
 
         $scope.getTutorName = function(tid){
             if($scope.tutorCache[tid]) {
-                console.log("fetching name");
+                //console.log("fetching name");
                 return $scope.tutorCache[tid].firstName + " " + $scope.tutorCache[tid].lastName;
             }
         };
@@ -185,10 +185,19 @@
 
         //delete reservation
         $scope.deleteOrder = function(orderId){
-            ReservationService.deleteReservationById(orderId).then(function(retVal){
-                $scope.reservationCache[$scope.uid] = retVal.data;
-            });
-        }
+            if (confirm("Are you sure to delete this reservation?") == true) {
+                ReservationService.deleteReservationById(orderId).then(function(retVal){
+                    $scope.reservationCache[$scope.uid] = retVal.data;
+                });
+            } else {
 
+            }
+        };
+
+        $scope.clearFields = function() {
+            $scope.reservation.time = null;
+            $scope.reservation.duration = null;
+            $scope.reservation.location = null;
+        }
     }
 })();
